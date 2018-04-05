@@ -2,57 +2,54 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 import App from '../common/App.jsx';
-import configureStore, {reducers} from '../common/configureStore.js';
+import configureStore, { reducers } from '../common/configureStore.js';
 import { StaticRouter as Router, matchPath } from 'react-router';
 import routeOptions from '../common/routes.js';
 
 
-function handleRender(req,res)  {
-   // getData(data => {
+function handleRender(req, res) {
+  // getData(data => {
 
-    // create store
-    const store = configureStore();
+  // create store
+  const store = configureStore();
 
-//    const url = 'http://localhost:3000/screen'; 
+  //    const url = 'http://localhost:3000/screen';
 
-    // react router setup
-    let foundPath = null;
+  // react router setup
+  let foundPath = null;
 
 
-    // grab path that matches with req.url along with component    
-    let { path, component } = routeOptions.routes.find (
-        ({ path, exact }) => {
-            foundPath = matchPath(req.url, { path, exact, strict: false })
-            return foundPath;
-        }) || {};
+  // grab path that matches with req.url along with component
+  const { path, component } = routeOptions.routes.find(({ path, exact }) => {
+    foundPath = matchPath(req.url, { path, exact, strict: false });
+    return foundPath;
+  }) || {};
 
-//    console.log('foundPath', foundPath);
-    let context = {};
-//    console.log(context); 
+  //    console.log('foundPath', foundPath);
+  const context = {};
+  //    console.log(context);
 
-    // render component to string
-    const html = renderToString(
-        <Provider store = {store}>
-            <Router context = {context} location = {req.url}>
-                <App />
-            </Router>
-        </Provider>
-    )
-    
-  //  console.log(context); 
+  // render component to string
+  const html = renderToString(<Provider store={store}>
+    <Router context={context} location={req.url}>
+      <App />
+    </Router>
+                              </Provider>);
 
-    // get redux state
-    const finalState = store.getState();
+  //  console.log(context);
 
-    // send to client
-    res.send(renderFullPage(html, finalState));
-    //})
+  // get redux state
+  const finalState = store.getState();
+
+  // send to client
+  res.send(renderFullPage(html, finalState));
+  // })
 }
 
 
 // create html and inject redux data into it
 function renderFullPage(html, preloadedState) {
-    return `
+  return `
         <!DOCTYPE html>
         <html lang = "en">
             <head>
@@ -71,12 +68,9 @@ function renderFullPage(html, preloadedState) {
                 <script src="/client.bundle.js" ></script>
             </body>
         </html>
-    `
+    `;
 }
 
 
-
 export { handleRender, renderFullPage };
-
-
 

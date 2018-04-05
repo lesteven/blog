@@ -34,7 +34,7 @@ class App extends Component {
         return (
             <Fragment>
                 <NavBar />
-                <div className='max-width top-pad'>
+                <div className='max-width view'>
                     <Switch>
                         { reactRoutes }
                     </Switch>
