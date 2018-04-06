@@ -2,7 +2,14 @@
 import express from 'express';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
-import path from 'path';
+// import path from 'path';
+
+// routers
+import screenRouter from './routes/screenRouter';
+
+// react server side
+import { handleRender } from './ssrFunctions';
+
 
 const app = express();
 app.use(morgan('dev'));
@@ -44,18 +51,12 @@ app.use(express.static('dist'));
 app.use(express.static('imgs'));
 
 
-// routers
-import screenRouter from './routes/screenRouter';
-
 // client api
 app.use('/screen', screenRouter);
 
-
-// react server side
-import { handleRender } from './ssrFunctions.js';
-
-
+// use handleRender for each request
 app.use(handleRender);
+
 
 // Check mode
 if (app.get('env') === 'development') {
@@ -63,6 +64,7 @@ if (app.get('env') === 'development') {
 } else {
   console.log('Production mode!');
 }
+
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);

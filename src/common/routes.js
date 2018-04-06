@@ -1,5 +1,5 @@
-import Home from './views/home/Home.jsx';
-import About from './views/about/About.jsx';
+import Home from './views/home/Home';
+import About from './views/about/About';
 
 
 const routes = {

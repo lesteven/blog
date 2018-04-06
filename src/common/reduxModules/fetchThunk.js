@@ -13,7 +13,6 @@ export function fetchData(url, cb) {
 }
 
 export function postData(url, method, data, cb) {
-  console.log('postData called');
   return (dispatch) => {
     fetch(url, {
       method,
@@ -22,13 +21,13 @@ export function postData(url, method, data, cb) {
       body: JSON.stringify(data),
     })
       .then(res => res.json())
-      .then((data) => {
+      .then((json) => {
         if (cb) {
-          cb(data);
+          cb(json);
         }
       })
       .catch((err) => {
-        console.log('there was an error', err);
+        console.error('there was an error', err);
       });
   };
 }

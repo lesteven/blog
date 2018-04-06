@@ -6,8 +6,8 @@ const screenRouter = express.Router();
 screenRouter.route('/')
 
   .post((req, res) => {
-    console.log('reached screenRouter');
-    console.log(req.body);
+  //  console.log('reached screenRouter');
+  //  console.log(req.body);
     res.json('success');
   });
 
