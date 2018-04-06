@@ -39,7 +39,7 @@ authRouter.route('/log')
         user: req.user.username,
       });
     } else {
-      res.json({});
+      res.json({err:'nothing here'});
     }
   })
   .post(sanitize, (req, res, next) => {

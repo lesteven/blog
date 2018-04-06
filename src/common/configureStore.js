@@ -4,10 +4,12 @@ import { view } from './reduxModules/viewModule';
 import { authReducer } from './reduxModules/authModule';
 
 
-const reducers = combineReducers({
+export const reducers = combineReducers({
   view,
   authReducer,
 });
+
+
 export default function configureStore(preloadedState) {
   return createStore(
     reducers,

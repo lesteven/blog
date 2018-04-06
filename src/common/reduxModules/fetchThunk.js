@@ -7,7 +7,9 @@ export function fetchData(url, cb) {
     fetch(url, { credentials: 'same-origin' })
       .then(res => res.json())
       .then((data) => {
-        cb(data);
+        if (cb) {
+          cb(data);
+        }
       });
   };
 }

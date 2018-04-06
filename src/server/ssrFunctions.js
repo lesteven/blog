@@ -3,9 +3,8 @@ import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 import { StaticRouter as Router, matchPath } from 'react-router';
 import App from '../common/App';
-import configureStore, { reducers } from '../common/configureStore';
 import routeOptions from '../common/routes';
-
+import configureStore from '../common/configureStore';
 
 // create html and inject redux data into it
 function renderFullPage(html, preloadedState) {
@@ -32,45 +31,62 @@ function renderFullPage(html, preloadedState) {
 }
 
 
-function handleRender(req, res) {
-  // getData(data => {
+async function getData(req, res) { 
+    // create store
+    const store = configureStore();
 
-  // create store
-  const store = configureStore();
-
-  //    const url = 'http://localhost:3000/screen';
-
-  // react router setup
-  let foundPath = null;
+    // react router setup
+    let foundPath = null;
 
 
-  // grab path that matches with req.url along with component
-  const { path, component } = routeOptions.routes.find(({ path, exact }) => {
-    foundPath = matchPath(req.url, { path, exact, strict: false });
-    return foundPath;
-  }) || {};
+    // grab path that matches with req.url along with component
+    let { path, component } = routeOptions.routes.find(({ path, exact }) => {
+      foundPath = matchPath(req.url, { path, exact, strict: false });
+      return foundPath;
+    }) || {};
 
-  //    console.log('foundPath', foundPath);
-  const context = {};
-  //    console.log(context);
+    // check for react component and fetch data
+    if (!component) {
+      component = {};
+    }
+    if (!component.fetchData) {
+      component.fetchData = () => new Promise(resolve => resolve());
+    }
 
-  // render component to string
-  const html = renderToString(<Provider store={store}>
-    <Router context={context} location={req.url}>
-      <App />
-    </Router>
-                              </Provider>);
+ 
+    const fullUrl = req.protocol + '://' + req.get('host');
+    console.log('user', req.user.username);
 
-  //  console.log(context);
+    await component.fetchData({ store, params: (foundPath? foundPath.params :
+      {}) }, fullUrl)
 
-  // get redux state
-  const finalState = store.getState();
+    let preloadedState = store.getState();
+    let context = {};
 
-  // send to client
-  res.send(renderFullPage(html, finalState));
-  // })
+    // render component to string
+    const html = renderToString(<Provider store={store}>
+      <Router context={context} location={req.url}>
+        <App />
+      </Router>
+                                </Provider>);
+
+    //  console.log(context);
+
+    // get redux state
+    const finalState = store.getState();
+
+    // send to client
+    res.send(renderFullPage(html, finalState));
 }
 
+function handleRender(req, res) {
+  try {
+    getData(req, res);
+  }
+  catch(e) {
+    res.send('there was an error');
+  }
+}    
 
 export { handleRender, renderFullPage };
 
