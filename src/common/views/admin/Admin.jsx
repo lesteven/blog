@@ -9,12 +9,8 @@ class Admin extends Component {
   render (){
     return (
       <Fragment>
-        <section>                
           <Login />
-        </section>                
-        <section>  
           <Register />              
-        </section>                
       </Fragment>
     )
   }

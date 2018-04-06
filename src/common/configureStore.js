@@ -1,11 +1,12 @@
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { view } from './reduxModules/viewModule';
+import { authReducer } from './reduxModules/authModule';
 
 
 const reducers = combineReducers({
   view,
-
+  authReducer,
 });
 export default function configureStore(preloadedState) {
   return createStore(
