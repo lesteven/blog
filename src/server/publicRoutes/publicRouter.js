@@ -1,10 +1,11 @@
-var express = require('express');
-var publicRouter = express.Router();
+const express = require('express');
+
+const publicRouter = express.Router();
 
 
 // public routes
-var authRouter = require('./authRouter');
-var lockedRouter = require('./lockedRouter');
+const authRouter = require('./authRouter');
+const lockedRouter = require('./lockedRouter');
 
 
 publicRouter.use('/auth', authRouter);

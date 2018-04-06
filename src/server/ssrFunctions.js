@@ -55,12 +55,11 @@ function handleRender(req, res) {
   //    console.log(context);
 
   // render component to string
-  const html = renderToString(
-    <Provider store={store}>
-      <Router context={context} location={req.url}>
-        <App />
-      </Router>
-    </Provider>);
+  const html = renderToString(<Provider store={store}>
+    <Router context={context} location={req.url}>
+      <App />
+    </Router>
+                              </Provider>);
 
   //  console.log(context);
 

@@ -10,11 +10,14 @@ const routes = {
     },
     {
       path: '/about', component: About, exact: true, title: 'About', show: true,
-    },  
+    },
     {
-      path: '/admin', component: Admin, exact: true, title: 'Admin', 
-        show: false
-    }
+      path: '/admin',
+      component: Admin,
+      exact: true,
+      title: 'Admin',
+      show: false,
+    },
   ],
 
 

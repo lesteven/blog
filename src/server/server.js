@@ -3,12 +3,13 @@ import morgan from 'morgan';
 import bodyParser from 'body-parser';
 import helmet from 'helmet';
 import mongoose from 'mongoose';
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
-var User = require('./models/user');
-var session = require('express-session');
-var MongoStore = require('connect-mongo')(session);
-var config = require('../../config.js');
+
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const User = require('./models/user');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+const config = require('../../config.js');
 
 // routers
 import publicRouter from './publicRoutes/publicRouter';
@@ -31,28 +32,27 @@ app.use(bodyParser.json());
 
 
 // database
-const url = process.env.MONGODB_URI || 'mongodb://localhost:27017/photography'
-const promise = mongoose.connect(url)
+const url = process.env.MONGODB_URI || 'mongodb://localhost:27017/photography';
+const promise = mongoose.connect(url);
 const db = mongoose.connection;
-db.on('error',console.error.bind(console,'connection error'));
-db.once('open',function(){
-	console.log('DB connected to server');
-})
+db.on('error', console.error.bind(console, 'connection error'));
+db.once('open', () => {
+  console.log('DB connected to server');
+});
 
 
 // passport
-
-var sess = {
-    store: new MongoStore({url:url}),
-	secret: config.secret,
-	resave:false,
-	saveUninitialized:false,
-}
+const sess = {
+  store: new MongoStore({ url }),
+  secret: config.secret,
+  resave: false,
+  saveUninitialized: false,
+};
 
 if (app.get('env') === 'production') {
-    app.set('trust proxy', 1);
-    sess.secure = true;
-    console.log('Production mode');
+  app.set('trust proxy', 1);
+  sess.secure = true;
+  console.log('Production mode');
 }
 
 app.use(session(sess));

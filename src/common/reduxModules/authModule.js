@@ -9,104 +9,99 @@ const login = '/redux/authModule/LOGIN';
 
 // register actions
 export function registerAction(status) {
-    return {
-        type: makeAccount,
-        status
-    }
+  return {
+    type: makeAccount,
+    status,
+  };
 }
 
 export function updateRI(name, value) {
-    return {
-        type: updateRegInput,
-        name,
-        value
-    }
+  return {
+    type: updateRegInput,
+    name,
+    value,
+  };
 }
 // login actions
 export function updateLI(name, value) {
-    return {
-        type: updateLogInput,
-        name,
-        value
-    }
+  return {
+    type: updateLogInput,
+    name,
+    value,
+  };
 }
 
 export function loginAction(status) {
-    return {
-        type: login,
-        status
-    }
+  return {
+    type: login,
+    status,
+  };
 }
 // initial state
-let initialState = {
-    register: {
-        username:'',
-        password:'',
-        email:'',
-    },
-    login: {
-        username: '',
-        password:''
-    },
-    status: {}
-}
+const initialState = {
+  register: {
+    username: '',
+    password: '',
+    email: '',
+  },
+  login: {
+    username: '',
+    password: '',
+  },
+  status: {},
+};
 
 // reducer
-export const authReducer = (state= initialState, action) => {
-    const { status } = action;
-    switch (action.type) {
-        case makeAccount:
-            return {
-                ...state,
-                register: {
-                    ...success(status, state)
-                },
-                status
-            }
-        case updateRegInput: 
-            return {
-                ...state,
-                register: {
-                    ...state.register,
-                    [action.name]:action.value,
-                }
-            }
-        case updateLogInput:
-            return {
-                ...state,
-                login: {
-                    ...state.login,
-                    [action.name]:action.value,
-                }
-            }
-        case login: {
-            return {
-                ...state,
-                login: {
-                    ...loginSuccess(status, state)
-                },
-                status
-            }
-        }
-        default:
-            return state;
+export const authReducer = (state = initialState, action) => {
+  const { status } = action;
+  switch (action.type) {
+    case makeAccount:
+      return {
+        ...state,
+        register: {
+          ...success(status, state),
+        },
+        status,
+      };
+    case updateRegInput:
+      return {
+        ...state,
+        register: {
+          ...state.register,
+          [action.name]: action.value,
+        },
+      };
+    case updateLogInput:
+      return {
+        ...state,
+        login: {
+          ...state.login,
+          [action.name]: action.value,
+        },
+      };
+    case login: {
+      return {
+        ...state,
+        login: {
+          ...loginSuccess(status, state),
+        },
+        status,
+      };
     }
-}
+    default:
+      return state;
+  }
+};
 
 // support functions
 function success(status, state) {
-    if (status.success)
-        return initialState.register
-    else
-        return state.register
+  if (status.success) { return initialState.register; }
+  return state.register;
 }
 function loginSuccess(status, state) {
-    if (status.user)
-        return initialState.login
-    else
-        return state.login
+  if (status.user) { return initialState.login; }
+  return state.login;
 }
-
 
 
 export default authReducer;

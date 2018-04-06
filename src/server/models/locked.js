@@ -1,9 +1,10 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
 
-var Locked = new Schema({
-    username:String,
-    url: String,
-})
+const Schema = mongoose.Schema;
+
+const Locked = new Schema({
+  username: String,
+  url: String,
+});
 
 module.exports = mongoose.model('LockedAccounts', Locked);
