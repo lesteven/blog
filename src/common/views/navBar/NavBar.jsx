@@ -15,8 +15,10 @@ class NavBar extends Component {
     const { showFlex } = this.props.view;
 //    console.log(showFlex);
         const links = routesOptions.routes.map (e =>
+            e.show? 
             <Link to = { e.path } key = { e.path } onClick = {toggleLinks}>
                 {e.title}</Link>
+            : null
         )
         return (
             <div className='nav-wrapper'>

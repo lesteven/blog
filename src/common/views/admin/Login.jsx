@@ -1,0 +1,16 @@
+import React, { Component, Fragment } from 'react';
+
+
+class Login extends Component {
+
+  render (){
+    return (
+      <Fragment>
+        Hello Login!                
+      </Fragment>
+    )
+  }
+}
+
+
+export default Login;

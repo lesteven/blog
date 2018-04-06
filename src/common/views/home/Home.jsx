@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import styles from './home.css';
 
 
-class HomeV2 extends Component {
+class Home extends Component {
 
     render (){
         return (
@@ -14,4 +14,4 @@ class HomeV2 extends Component {
 }
 
 
-export default HomeV2;
+export default Home;
