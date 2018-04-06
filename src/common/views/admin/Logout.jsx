@@ -13,13 +13,9 @@ class Logout extends Component {
     let { auth } = this.props;
     return(
       <Fragment>
-        <form >
-          <input  className= 'teal-button' 
-              type='button' value='Logout' onClick={this.logout}/>
-        </form>
+        <button onClick={this.logout}> Logout </button>
         <div className='white-space'></div>
-        <button className= 'teal-button' onClick={this.goHome}>
-            Go To Dashboard</button>
+        <button  onClick={this.goHome}> Go To Dashboard</button>
       </Fragment>
     )
   }
@@ -28,7 +24,7 @@ class Logout extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        auth: state.authReducer
+        auth: state.auth
     }
 }
 

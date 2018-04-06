@@ -8,12 +8,7 @@ import Logout from './Logout';
 
 class Admin extends Component {
   componentDidMount = () => {
-    setTimeout(this.props.delayAC, 50);
-  }
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.auth != this.props.auth) {
-      console.log('received props', nextProps);
-    }
+    setTimeout(this.props.delayAC, 10);
   }
   renderPage = () => {
     const { auth, delay } = this.props;
@@ -39,9 +34,10 @@ class Admin extends Component {
 }
 
 const mapStateToProps = state => {
+  const { delay, auth } = state;
   return {
-    auth: state.authReducer,
-    delay: state.delay,
+    auth,
+    delay,
   }
 }
 

@@ -43,7 +43,7 @@ class Register extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-        auth: state.authReducer
+        auth: state.auth
     }
 }
 
