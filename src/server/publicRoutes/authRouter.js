@@ -20,8 +20,6 @@ passport.deserializeUser((id, done) => {
 authRouter.route('/reg')
 
   .post(sanitize, (req, res, next) => {
-    console.log('received data!');
-    console.log(req.body);
 
     if (!req.body.username || !req.body.password) {
       return res.json({ err: 'incomplete form' });
@@ -39,9 +37,10 @@ authRouter.route('/log')
         user: req.user.username,
       });
     } else {
-      res.json({err:'nothing here'});
+      res.json({});
     }
   })
+
   .post(sanitize, (req, res, next) => {
     if (!req.body.username || !req.body.password) {
       return res.json({ err: 'incomplete form' });

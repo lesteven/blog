@@ -4,6 +4,7 @@ import styles from './admin.css';
 import Register from './Register';
 import Login from './Login';
 import { delayAC } from '../../reduxModules/delayModule';
+import Logout from './Logout';
 
 class Admin extends Component {
   componentDidMount = () => {
@@ -18,7 +19,7 @@ class Admin extends Component {
     const { auth, delay } = this.props;
     return (
       auth.lstatus.user?
-        <p> you have loggin in </p>: 
+          <Logout /> :
           <Fragment>
             <Login />
             <Register /> 
@@ -47,7 +48,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     delayAC: () => dispatch(delayAC()),
-
+    
   }
 }
 

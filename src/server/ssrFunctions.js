@@ -55,7 +55,6 @@ async function getData(req, res) {
 
  
     const fullUrl = req.protocol + '://' + req.get('host');
-    console.log('user', req.user.username);
 
     await component.fetchData({ store, params: (foundPath? foundPath.params :
       {}) }, fullUrl)
