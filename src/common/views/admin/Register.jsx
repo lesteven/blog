@@ -18,11 +18,11 @@ class Register extends Component {
         let { auth, updateRI } = this.props;
         return (
             <Fragment>
-            {auth.status.err ? 
-                <h3 className='err'> {auth.status.err}</h3>
+            {auth.rstatus.err ? 
+                <h3 className='err'> {auth.rstatus.err}</h3>
                 : null }
-            {auth.status.success ? 
-                <h3 className='success'> {auth.status.success}</h3>
+            {auth.rstatus.success ? 
+                <h3 className='success'> {auth.rstatus.success}</h3>
                 : null }
             <form className='auth' onSubmit={this.register}>
                 <h2> Register </h2>
@@ -52,7 +52,7 @@ const mapDispatchToProps = (dispatch) => {
         fetchData: (url, cb) => dispatch(fetchData(url, cb)),
         postData: (url, method, data, cb) => dispatch(postData(url, method,
             data, cb)),
-        registerAction: (status) => dispatch(registerAction(status)),
+        registerAction: (rstatus) => dispatch(registerAction(rstatus)),
         updateRI: (value,data) => dispatch(updateRI(value,data)),
     }
 }

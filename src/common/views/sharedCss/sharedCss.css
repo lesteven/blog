@@ -12,6 +12,18 @@ body {
     text-align:center;
 }
 
+.err {
+    background-color:red;
+    color:white;
+    text-align:center;
+    padding:1vh;
+}
+.success {
+    background-color:green;
+    color:white;
+    text-align:center;
+    padding:1vh;
+}
 
 /* DESKTOP VIEW */
 

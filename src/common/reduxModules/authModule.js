@@ -48,7 +48,8 @@ const initialState = {
     username: '',
     password: '',
   },
-  status: {},
+  rstatus: {},
+  lstatus: {},
 };
 
 // reducer
@@ -61,7 +62,7 @@ export const authReducer = (state = initialState, action) => {
         register: {
           ...success(status, state),
         },
-        status,
+        rstatus:action.status,
       };
     case updateRegInput:
       return {
@@ -85,7 +86,7 @@ export const authReducer = (state = initialState, action) => {
         login: {
           ...loginSuccess(status, state),
         },
-        status,
+        lstatus: action.status,
       };
     }
     default:

@@ -53,7 +53,7 @@ module.exports = function (passport, res) {
 };
 // prevent brute force attack on accounts
 function preventBrute(user) {
-  if (user.attempts < 5) {
+  if (user.attempts < 10) {
     user.attempts += 1;
   } else {
     user.attempts = 0;
@@ -62,7 +62,7 @@ function preventBrute(user) {
     const url = generateUnlock();
     addLockedToDB(user.username, url);
     const fullUrl = `http://localhost:8080/api/locked/${url}`;
-    sendEmail(fullUrl);
+//    sendEmail(fullUrl);
   }
   console.log(user);
   console.log(user.attempts);

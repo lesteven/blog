@@ -21,11 +21,11 @@ class Login extends Component {
     let { auth } = this.props;
         return (
             <Fragment>
-            {auth.status.err ? 
-                <h3 className='err'> {auth.status.err}</h3>
+            {auth.lstatus.err ? 
+                <h3 className='err'> {auth.lstatus.err}</h3>
                 : null }
-            {auth.status.success ? 
-                <h3 className='success'> {auth.status.success}</h3>
+            {auth.lstatus.success ? 
+                <h3 className='success'> {auth.lstatus.success}</h3>
                 : null }
             <form className='auth' onSubmit={this.login} >
                 <h2> Login </h2>
@@ -53,7 +53,7 @@ const mapDispatchToProps = (dispatch) => {
         fetchData: (url, cb) => dispatch(fetchData(url, cb)),
         postData: (url, method, data, cb) => dispatch(postData(url, method,
             data, cb)),
-        loginAction: (status) => dispatch(loginAction(status)),
+        loginAction: (lstatus) => dispatch(loginAction(lstatus)),
         updateLI: (value,data) => dispatch(updateLI(value,data)),
     }
 }
