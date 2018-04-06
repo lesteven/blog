@@ -3,7 +3,7 @@
     flex-direction:column; 
     text-align:center;
     margin:auto;
-    padding:5vh;
+    max-width:400px;
 }
 .auth input {
     margin:1vh;
@@ -13,7 +13,9 @@
 /* MOBILE VIEW */
 
 @media only screen and (max-width:812px) {
-
+    .auth {
+        padding:5vh 0vh;
+    }
 
 }
 
@@ -21,7 +23,7 @@
 
 @media only screen and (min-width:812px) {
     .auth {
-        max-width:400px;
+        padding:5vh;
 
     }
 
