@@ -13,6 +13,7 @@ const config = require('../../config.js');
 
 // routers
 import publicRouter from './publicRoutes/publicRouter';
+import adminRouter from './adminRoutes/adminRouter';
 
 // react server side
 import { handleRender } from './ssrFunctions';
@@ -89,6 +90,9 @@ app.use(express.static('imgs'));
 
 // client api
 app.use('/api', publicRouter);
+
+// admin api
+app.use('/aapi', adminRouter);
 
 // use handleRender for each request
 app.use(handleRender);
