@@ -40,7 +40,9 @@ module.exports = function (passport, res) {
           user.save((err, user) => {
             if (err) return console.error(err);
           });
-          console.log(user);
+
+//          console.log(user);
+
           return res.json({
             user: user.username,
             redirect: true,
@@ -64,8 +66,8 @@ function preventBrute(user) {
     const fullUrl = `http://localhost:8080/api/locked/${url}`;
 //    sendEmail(fullUrl);
   }
-  console.log(user);
-  console.log(user.attempts);
+//  console.log(user);
+//  console.log(user.attempts);
   user.save((err, user) => {
     if (err) return console.error(err);
   });
@@ -106,6 +108,6 @@ function addLockedToDB(username, url) {
   account.save((err, locked) => {
     if (err) return console.log(err);
   });
-  console.log(account);
+//  console.log(account);
 }
 

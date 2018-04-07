@@ -13,7 +13,7 @@ module.exports = function (passport, res) {
           return res.json({ err: 'there was an error' });
         }
         if (!user) {
-          console.log(req.body);
+//          console.log(req.body);
           const newUser = new User();
           newUser.username = username;
           newUser.password = newUser.generateHash(password);
@@ -25,10 +25,13 @@ module.exports = function (passport, res) {
             }
             return res.json({ success: 'You are now registered.' });
           });
+
         }
+
         if (user) {
           return res.json({ err: 'user already exist' });
         }
+
       });
     }),
 

@@ -10,7 +10,7 @@ class Admin extends Component {
   componentDidMount = () => {
     setTimeout(this.props.delayAC, 10);
   }
-  renderPage = () => {
+  adminForm = () => {
     const { auth, delay } = this.props;
     return (
       auth.lstatus.user?
@@ -25,9 +25,7 @@ class Admin extends Component {
     const { auth, delay } = this.props;
     return (
       <Fragment>
-          { delay.render?
-           this.renderPage():<div></div>
-          }             
+          { delay.render? this.adminForm():<div></div> }             
       </Fragment>
     )
   }
