@@ -1,6 +1,8 @@
 import Home from './views/home/Home';
 import About from './views/about/About';
 import Admin from './views/admin/Admin';
+import Dashboard from './views/dashboard/Dashboard';
+
 
 const routes = {
 
@@ -16,6 +18,13 @@ const routes = {
       component: Admin,
       exact: true,
       title: 'Admin',
+      show: false,
+    },
+    {
+      path: '/dashboard',
+      component: Dashboard,
+      exact: true,
+      title: 'Dashboard',
       show: false,
     },
   ],

@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { toggleLinks } from '../../reduxModules/viewModule.js';
 import sharedStyles from '../sharedCss/sharedCss.css';
 
+
 class NavBar extends Component {
 
 

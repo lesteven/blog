@@ -8,10 +8,12 @@ import Logout from './Logout';
 
 class Admin extends Component {
   componentDidMount = () => {
+    // delay used to prevent multiple renders
     setTimeout(this.props.delayAC, 10);
   }
   adminForm = () => {
     const { auth, delay } = this.props;
+    // if user logged in -> show logout, else show login/register
     return (
       auth.lstatus.user?
           <Logout /> :
@@ -23,6 +25,8 @@ class Admin extends Component {
   }
   render (){
     const { auth, delay } = this.props;
+    // delay always false initially, bc admin page accessed only thru url
+    // delay = false -> timeout set delay = true -> render based on user status
     return (
       <Fragment>
           { delay.render? this.adminForm():<div></div> }             
