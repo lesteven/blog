@@ -60,6 +60,10 @@
 /* DESKTOP VIEW */
 
 @media only screen and (min-width:812px) {
+    .menu-icon img {
+        display:none;
+        height: 8vh;
+    }
     .links {
         width:33%;
         justify-content:space-around;
