@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Route, Link, Switch } from 'react-router-dom';
-import routesOptions from '../../routes.js';
+import nav from './navRoutes.js';
 import { BrowserRouter as Router } from 'react-router-dom';
 import styles from './navBar.css';
 import { connect } from 'react-redux';
@@ -15,11 +15,9 @@ class NavBar extends Component {
     const { toggleLinks } = this.props;
     const { showFlex } = this.props.view;
 //    console.log(showFlex);
-        const links = routesOptions.routes.map (e =>
-            e.show? 
+        const links = nav.routes.map (e =>
             <Link to = { e.path } key = { e.path } onClick = {toggleLinks}>
                 {e.title}</Link>
-            : null
         )
         return (
             <div className='nav-wrapper'>

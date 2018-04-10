@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { updateScreenSize } from './reduxModules/viewModule';
-import NavBar from './views/navBar/NavBar.jsx';
 import routesOptions from './routes.js';
 import { Route, Link, Switch, withRouter } from 'react-router-dom';
 import { fetchData, postData } from './reduxModules/fetchThunk';
@@ -34,12 +33,9 @@ class App extends Component {
       )
       return (
           <Fragment>
-              <NavBar />
-              <div className='max-width view'>
-                  <Switch>
-                      { reactRoutes }
-                  </Switch>
-              </div>
+            <Switch>
+                { reactRoutes }
+            </Switch>
           </Fragment>
       )
   }

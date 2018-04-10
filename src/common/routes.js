@@ -1,17 +1,18 @@
-import Home from './views/home/Home';
-import About from './views/about/About';
+import ClientTemplate from './views/clientTemplate/ClientTemplate';
 import Admin from './views/admin/Admin';
-import Dashboard from './views/dashboard/Dashboard';
+import Dashboard from './adminViews/dashboard/Dashboard';
+import { Route, Link, Switch, withRouter } from 'react-router-dom';
 
 
 const routes = {
 
   routes: [
     {
-      path: '/', component: Home, exact: true, title: 'Home', show: true,
-    },
-    {
-      path: '/about', component: About, exact: true, title: 'About', show: true,
+      path: '/dashboard',
+      component: Dashboard,
+      exact: true,
+      title: 'Dashboard',
+      show: false
     },
     {
       path: '/admin',
@@ -21,10 +22,10 @@ const routes = {
       show: false,
     },
     {
-      path: '/dashboard',
-      component: Dashboard,
-      exact: true,
-      title: 'Dashboard',
+      path: '/', 
+      component: ClientTemplate, 
+      exact: false, 
+      title: '/', 
       show: false,
     },
   ],
