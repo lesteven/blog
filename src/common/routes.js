@@ -10,23 +10,20 @@ const routes = {
     {
       path: '/dashboard',
       component: Dashboard,
-      exact: true,
+      exact: false,
       title: 'Dashboard',
-      show: false
     },
     {
       path: '/admin',
       component: Admin,
       exact: true,
       title: 'Admin',
-      show: false,
     },
     {
       path: '/', 
       component: ClientTemplate, 
       exact: false, 
       title: '/', 
-      show: false,
     },
   ],
 

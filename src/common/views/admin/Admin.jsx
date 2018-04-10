@@ -11,12 +11,21 @@ class Admin extends Component {
     // delay used to prevent multiple renders
     setTimeout(this.props.delayAC, 10);
   }
+  componentWillReceiveProps = (nextProps) => {
+    const { auth } = nextProps;
+    if(auth.lstatus.redirect !== this.props.auth.lstatus.redirect) {
+        auth.lstatus.redirect == true? this.goToDash() : null;
+    }
+  }
+  goToDash = () => {
+    this.props.history.push('/dashboard');
+  }
   adminForm = () => {
     const { auth, delay } = this.props;
     // if user logged in -> show logout, else show login/register
     return (
       auth.lstatus.user?
-          <Logout /> :
+          <Logout goToDash = { this.goToDash }/> :
           <Fragment>
             <Login />
             <Register /> 
@@ -28,9 +37,9 @@ class Admin extends Component {
     // delay always false initially, bc admin page accessed only thru url
     // delay = false -> timeout set delay = true -> render based on user status
     return (
-      <Fragment>
+      <div className='max-width view'>
           { delay.render? this.adminForm():<div></div> }             
-      </Fragment>
+      </div>
     )
   }
 }

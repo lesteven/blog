@@ -7,16 +7,19 @@ import { loginAction } from '../../reduxModules/authModule';
 
 class Logout extends Component {
   logout = () => {
-      this.props.fetchData('/api/auth/logout',this.props.loginAction)
+    this.props.fetchData('/api/auth/logout',this.props.loginAction)
+  }
+  goToDash = () => {
+    this.props.history.push('/dashboard');
   }
   render() {
     let { auth } = this.props;
     return(
-      <Fragment>
+      <div className='logout'>
         <button onClick={this.logout}> Logout </button>
         <div className='white-space'></div>
-        <button  onClick={this.goHome}> Go To Dashboard</button>
-      </Fragment>
+        <button  onClick={this.goToDash}> Go To Dashboard</button>
+      </div>
     )
   }
 
