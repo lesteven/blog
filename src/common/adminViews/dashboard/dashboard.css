@@ -1,0 +1,18 @@
+.dashboard {
+  display:flex;
+  height:100%;
+}
+.side-nav {
+  display:flex;
+  flex-direction:column;
+  background-color:#8563C9;
+  flex:1;
+}
+.side-nav a {
+  color:white;
+  text-decoration:none;
+}
+.dash-view {
+  flex:4;
+  background-color:#f7f7f8;
+}

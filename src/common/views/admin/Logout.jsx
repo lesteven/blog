@@ -9,9 +9,6 @@ class Logout extends Component {
   logout = () => {
     this.props.fetchData('/api/auth/logout',this.props.loginAction)
   }
-  goToDash = () => {
-    this.props.history.push('/dashboard');
-  }
   render() {
     let { auth } = this.props;
     return(
