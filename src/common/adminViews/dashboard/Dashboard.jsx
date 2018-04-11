@@ -7,6 +7,8 @@ import {
 } from 'react-router-dom';
 import dash from '../dashRoutes';
 import style from './dashboard.css';
+import DashNav from './DashNav';
+
 
 class Dashboard extends Component {
 
@@ -23,10 +25,14 @@ class Dashboard extends Component {
     return (
       <div className = 'dashboard'>
         <div className = 'side-nav'>
+          <span className='user'> 
+            hello
+          </span>
           { links }
         </div>
 
         <div className = 'dash-view'>
+          <DashNav />
           <Switch>
               { reactRoutes }
           </Switch>
