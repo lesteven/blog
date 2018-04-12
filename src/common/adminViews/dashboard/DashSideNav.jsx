@@ -10,6 +10,15 @@ import style from './dashboard.css';
 import DashNav from './DashNav';
 import { toggleDashSideNav } from '../../reduxModules/viewModule';
 
+/*
+  DashSideNav, view changes:  desktop vs mobile view.
+
+  In desktop -> sidenav appears, no menu svg, side-wrap empty
+
+  In mobile -> sidenav gone
+            -> toggle for appearance,  width is 100%, 
+            -> svg appears, side-wrap has color
+*/
 
 class DashSideNav extends Component {
 

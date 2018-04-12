@@ -16,6 +16,9 @@ import DashSideNav from './DashSideNav';
     Dash side nav bar
     Dash top nav bar
     Switch routes
+
+  dash-wrapper
+    gives all switch routes same css attributes
 */
 
 class Dashboard extends Component {

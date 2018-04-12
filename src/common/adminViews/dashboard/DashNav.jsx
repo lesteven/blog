@@ -5,6 +5,13 @@ import { fetchData } from '../../reduxModules/fetchThunk';
 import { loginAction } from '../../reduxModules/authModule';
 import { toggleDashSideNav } from '../../reduxModules/viewModule';
 
+/*
+  Mobile
+    menu.svg appears
+      for opening up side nav
+  Desktop
+    menu.svg gone
+*/
 
 class DashNav extends Component {
   logout = () => {
