@@ -13,7 +13,7 @@ class NavBar extends Component {
 
     render() {
     const { toggleLinks } = this.props;
-    const { showFlex } = this.props.view;
+    const { showNav } = this.props.view;
 //    console.log(showFlex);
         const links = nav.routes.map (e =>
             <Link to = { e.path } key = { e.path } onClick = {toggleLinks}>
@@ -24,7 +24,7 @@ class NavBar extends Component {
                 <nav className='nav-bar max-width'>
                     <a className='menu-icon' onClick = {toggleLinks}>
                         <img src='/menu.svg'/> </a>
-                    <span className='links' style={{display:showFlex}}>
+                    <span className='links' style={{display:showNav}}>
                         { links }</span>
                 </nav>
             </div>

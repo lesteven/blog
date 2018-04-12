@@ -8,28 +8,27 @@ import {
 import dash from '../dashRoutes';
 import style from './dashboard.css';
 import DashNav from './DashNav';
+import DashSideNav from './DashSideNav';
 
+
+/*
+  contains:
+    Dash side nav bar
+    Dash top nav bar
+    Switch routes
+*/
 
 class Dashboard extends Component {
 
   render() {
     const { path } = this.props.match;
-    const links = dash.routes.map (e => 
-      <Link to = { `${path}${e.path}` }  
-      key = { e.path }> { e.title } </Link>
-    )
     const reactRoutes = dash.routes.map (e =>
         <Route exact = { e.exact } path = { `${path}${e.path}` } 
             component = { e.component } key = { e.path} />
     )
     return (
       <div className = 'dashboard'>
-        <div className = 'side-nav'>
-          <span className='user'> 
-            hello
-          </span>
-          { links }
-        </div>
+        <DashSideNav path = { path }/>
 
         <div className = 'dash-view'>
           <DashNav />

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link, Switch } from 'react-router-dom';
 import { fetchData } from '../../reduxModules/fetchThunk';
 import { loginAction } from '../../reduxModules/authModule';
+//import { toggleDashSideNav } from '../../reduxModules/viewModule';
 
 
 class DashNav extends Component {
@@ -13,6 +14,10 @@ class DashNav extends Component {
   render() {
     return (
       <nav className = 'dash-topnav'>
+        <a className='dtn-menu'> 
+          <img src='/dashMenu.svg' /> 
+        </a>
+
         <Link to = '/'> Home </Link>
         <Link to = '/admin' onClick = { this.logout }> Log Out </Link>
       </nav> 

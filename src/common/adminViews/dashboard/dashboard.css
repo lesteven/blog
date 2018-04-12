@@ -49,13 +49,36 @@
   border-bottom:1px solid ##d3d3d3;
   display:flex;
   align-items:center;
-  justify-content:flex-end;
 }
-.dash-topnav a {
+.dash-topnav a:not(.dtn-menu) {
   text-decoration:none;
   color:gray;
   padding-right:5vw;
   cursor:pointer;
 }
+.dtn-menu {
+  padding-left:5vw;
+}
+.dtn-menu img {
+  content:url('./dashMenu.svg');
+  cursor:pointer;
+}
 
+/* MOBILE VIEW */
 
+@media only screen and (max-width:812px) {
+  .dtn-menu {
+    display:block;
+    flex:8;
+  }
+}
+/* DESKTOP VIEW */
+
+@media only screen and (min-width:812px) {
+  .dtn-menu {
+    display:none;
+  }
+  .dash-topnav {
+    justify-content:flex-end;
+  }
+}
