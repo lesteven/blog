@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link, Switch } from 'react-router-dom';
 import { fetchData } from '../../reduxModules/fetchThunk';
 import { loginAction } from '../../reduxModules/authModule';
-//import { toggleDashSideNav } from '../../reduxModules/viewModule';
+import { toggleDashSideNav } from '../../reduxModules/viewModule';
 
 
 class DashNav extends Component {
@@ -12,10 +12,11 @@ class DashNav extends Component {
   }
 
   render() {
+  const { toggle } = this.props;
     return (
       <nav className = 'dash-topnav'>
         <a className='dtn-menu'> 
-          <img src='/dashMenu.svg' /> 
+          <img src='/dashMenu.svg' onClick = { toggle } /> 
         </a>
 
         <Link to = '/'> Home </Link>
@@ -35,6 +36,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         fetchData: (url, cb) => dispatch(fetchData(url, cb)),
         loginAction: (lstatus) => dispatch(loginAction(lstatus)),
+        toggle: () => dispatch(toggleDashSideNav()),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(DashNav);

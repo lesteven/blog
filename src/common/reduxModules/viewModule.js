@@ -76,7 +76,7 @@ export const view = (state = initialState, action) => {
     case toggleDashSide:
       return {
         ...state,
-        showDashSideNav: toggleFlex(state.screenSize, state.showNav),
+        showDashSideNav: toggleFlex(state.screenSize, state.showDashSideNav),
       };
     default:
       return state;

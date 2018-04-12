@@ -8,24 +8,34 @@ import {
 import dash from '../dashRoutes';
 import style from './dashboard.css';
 import DashNav from './DashNav';
+import { toggleDashSideNav } from '../../reduxModules/viewModule';
 
 
 class DashSideNav extends Component {
 
   render() {
-    const { path, view } = this.props;
+    const { path, view, toggle } = this.props;
     const { showDashSideNav } = view;
 
     const links = dash.routes.map (e => 
-      <Link to = { `${path}${e.path}` }  
+      <Link to = { `${path}${e.path}` } onClick = { toggle }
       key = { e.path }> { e.title } </Link>
     )
     return (
-      <div className = 'side-nav' style = {{ display: showDashSideNav }}>
-        <span className='user'> 
-          hello
-        </span>
-        { links }
+      <div className = 'side-nav-wrapper' 
+        style = {{ display: showDashSideNav }}>
+        <div className = 'side-nav' >
+          <a className='dtn-sidemenu'> 
+            <img src='/menu.svg' onClick = { toggle } /> 
+          </a>
+          <span className='user'> 
+            hello
+          </span>
+          { links }
+        </div>
+        <div className = 'side-wrap' onClick = { toggle } 
+          style = {{ display: showDashSideNav }}>
+        </div>
       </div>
     )
   }
@@ -39,7 +49,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        toggleLinks: () => dispatch(toggleLinks())
+        toggleLinks: () => dispatch(toggleLinks()),
+        toggle: () => dispatch(toggleDashSideNav()),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(DashSideNav);
