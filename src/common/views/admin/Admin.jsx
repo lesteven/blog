@@ -7,9 +7,13 @@ import { delayAC } from '../../reduxModules/delayModule';
 import Logout from './Logout';
 
 class Admin extends Component {
+  delayRender = () => {
+    const { delayAC } = this.props;
+    delayAC('renderAdmin');
+  }
   componentDidMount = () => {
     // delay used to prevent multiple renders
-    setTimeout(this.props.delayAC, 10);
+    setTimeout(this.delayRender, 10);
   }
   componentWillReceiveProps = (nextProps) => {
     const { auth } = nextProps;
@@ -18,6 +22,7 @@ class Admin extends Component {
     }
   }
   goToDash = () => {
+    console.log(this.props.history)
     this.props.history.push('/dashboard');
   }
   adminForm = () => {
@@ -38,7 +43,7 @@ class Admin extends Component {
     // delay = false -> timeout set delay = true -> render based on user status
     return (
       <div className='max-width view'>
-          { delay.render? this.adminForm():<div></div> }             
+          { delay.renderAdmin? this.adminForm():<div></div> }             
       </div>
     )
   }
@@ -54,7 +59,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    delayAC: () => dispatch(delayAC()),
+    delayAC: (value) => dispatch(delayAC(value)),
     
   }
 }
