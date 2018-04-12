@@ -36,8 +36,11 @@
 .dash-view {
   flex:8;
   background-color:#f7f7f8;
+  overflow:auto;
 }
-
+.dash-wrapper {
+  padding:5vw;
+}
 
 /* top nav bar */
 .dash-topnav {
@@ -47,7 +50,12 @@
   display:flex;
   align-items:center;
   justify-content:flex-end;
+}
+.dash-topnav a {
+  text-decoration:none;
+  color:gray;
   padding-right:5vw;
+  cursor:pointer;
 }
 
 

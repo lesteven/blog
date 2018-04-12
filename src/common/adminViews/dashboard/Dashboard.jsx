@@ -33,9 +33,11 @@ class Dashboard extends Component {
 
         <div className = 'dash-view'>
           <DashNav />
-          <Switch>
-              { reactRoutes }
-          </Switch>
+          <div className = 'dash-wrapper'>
+            <Switch>
+                { reactRoutes }
+            </Switch>
+          </div>
         </div>
 
       </div>

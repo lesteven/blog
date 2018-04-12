@@ -7,7 +7,7 @@ class DashHome extends Component {
   render() {
     return (
       <div>
-        hello DashHome!
+        hello dashhome!
       </div>
     )
   }
