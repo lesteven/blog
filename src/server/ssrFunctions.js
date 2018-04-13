@@ -6,6 +6,7 @@ import App from '../common/App';
 import routeOptions from '../common/routes';
 import configureStore from '../common/configureStore';
 
+
 // create html and inject redux data into it
 function renderFullPage(html, preloadedState) {
   return `
@@ -63,19 +64,15 @@ async function getData(req, res) {
     let context = {};
 
     // render component to string
-    const html = renderToString(<Provider store={store}>
+    const html = renderToString(
+    <Provider store={store}>
       <Router context={context} location={req.url}>
         <App />
       </Router>
-                                </Provider>);
-
-    //  console.log(context);
-
-    // get redux state
-    const finalState = store.getState();
-
+    </Provider>);
+  
     // send to client
-    res.send(renderFullPage(html, finalState));
+    res.send(renderFullPage(html, preloadedState));
 }
 
 function handleRender(req, res) {

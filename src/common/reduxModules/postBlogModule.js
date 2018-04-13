@@ -32,6 +32,7 @@ export function postStatus(status){
     }
 }
 
+
 // initial state
 let initialState = {
     editor: EditorState.createEmpty(),

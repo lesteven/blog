@@ -3,12 +3,13 @@ import thunk from 'redux-thunk';
 import { view } from './reduxModules/viewModule';
 import { authReducer as auth } from './reduxModules/authModule';
 import { delayReducer as delay } from './reduxModules/delayModule';
-
+import { postBlog } from './reduxModules/postBlogModule';
 
 export const reducers = combineReducers({
   view,
   auth,
   delay,
+  postBlog 
 });
 
 

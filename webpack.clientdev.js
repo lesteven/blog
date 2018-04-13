@@ -4,6 +4,7 @@ var common = require('./webpack.common.js');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = merge(common, {
+    mode: 'development',
     devtool: 'inline-source-map',
     devServer: {
         publicPath: '/',

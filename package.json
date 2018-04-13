@@ -4,9 +4,9 @@
   "description": "",
   "main": "./src/server/server.js",
   "scripts": {
-    "start": "webpack-dev-server --hot --config webpack.clientdev.js --mode development",
+    "start": "webpack-dev-server --hot --config webpack.clientdev.js",
     "server": "nodemon src/server/server.js --exec babel-node",
-    "build": "webpack --config webpack.clientprod.js --mode production && webpack --config webpack.server.js --mode production",
+    "build": "webpack --config webpack.clientprod.js && webpack --config webpack.server.js",
     "pro-server": "NODE_ENV=production node dist/server.bundle.js",
     "lint": "eslint src"
   },
@@ -19,6 +19,7 @@
     "babel-loader": "^7.1.4",
     "babel-plugin-css-modules-transform": "^1.5.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-3": "^6.24.1",
@@ -42,7 +43,6 @@
   },
   "dependencies": {
     "@sendgrid/mail": "^6.2.1",
-    "babel-polyfill": "^6.26.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.2",
     "connect-mongo": "^2.0.1",

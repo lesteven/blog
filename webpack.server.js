@@ -4,16 +4,18 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var nodeExternals = require('webpack-node-externals');
 
 module.exports = {
+    mode: 'production',
     target: 'node',
     resolve: {
       extensions: ['.js','.jsx']
     },
     externals: [nodeExternals()],
-    entry: {
-        server: './src/server/server.js'
-    },
+    entry: [
+        'babel-polyfill',
+       './src/server/server.js'
+    ],
     output: {
-        filename: '[name].bundle.js',
+        filename: 'server.bundle.js',
         path: path.resolve(__dirname, 'dist')
     },
     devtool: 'source-map',
