@@ -11,6 +11,8 @@ import InlineStyleControls from './InlineStyleControls.jsx';
 import {styleMap,
         getBlockStyle,
         mediaBlockRenderer} from './editorStyle.js';
+import styles from '../richEditor.css';
+
 
 class RichEditor extends Component{
     focus = () => this.refs.editor.focus();
@@ -33,6 +35,9 @@ class RichEditor extends Component{
             <div className={className} onClick={this.focus}>
                 <Editor
                     editorKey = 'foobaz'
+                    blockStyleFn={getBlockStyle}
+                    blockRendererFn={mediaBlockRenderer}
+                    customStyleMap={styleMap}
                     editorState = { editor }
                     onChange={ onChange }
                     handleKeyCommand={this.handleKey}

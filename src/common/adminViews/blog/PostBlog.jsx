@@ -13,12 +13,12 @@ import {convertData,
         postStatus} from '../../reduxModules/postBlogModule';
 
 import RichEditor from './components/RichEditor.jsx';
-/*
+
 import BlockStyleControls from './components/BlockStyleControls.jsx';
 import InlineStyleControls from './components/InlineStyleControls.jsx';
 import TextInput from './components/TextInput.jsx';
 import { postData } from '../../reduxModules/fetchThunk';
-*/
+
 
 
 /*
@@ -32,7 +32,7 @@ import { postData } from '../../reduxModules/fetchThunk';
 
 
 class PostBlog extends Component {
-/*
+
     toggleBlockType=(blockType)=> {
       this.props.updateOne(
         RichUtils.toggleBlockType(
@@ -51,7 +51,6 @@ class PostBlog extends Component {
     }
     confirmMedia=(type,content)=>{
         const {editor} = this.props.postBlog;
-//        console.log('confirm!',type,content);
         const contentState = editor.getCurrentContent();
         const contentStateWithEntity = contentState.createEntity(
             type,
@@ -91,24 +90,46 @@ class PostBlog extends Component {
         var data = {editor:JSON.stringify(convertToRaw(contentState))};
         postData('/api/editor','POST',data,postStatus);
     }
-*/
     componentDidMount() {
       console.log('did mount called');
       const { convertData } = this.props;
       convertData(); 
     }
     render() {
-    let {editor, youtube, imgURL, status, converted} = this.props.postBlog;
+    const {editor, youtube, imgURL, status, converted} = this.props.postBlog;
+    const blog = {_id:0};
         return (
             <div className='dash-container'>
+               { converted? 
                 <div className='RichEditor-root'>
-                   { converted? 
+                    <BlockStyleControls editorState={editor}
+                        onToggle={this.toggleBlockType}/>
+                    <InlineStyleControls editorState={editor}
+                        onToggle={this.toggleInlineStyle}/>
+                    <TextInput 
+                        updateInput ={this.props.updateImage}
+                        inputValue ={imgURL}
+                        data ={blog}
+                        onSubmit={this.addImage}
+                        buttonText='Add Image'
+                        />
+                    <TextInput
+                        updateInput ={this.props.updateYT}
+                        inputValue ={youtube}
+                        data ={blog}
+                        onSubmit={this.addYouTube}
+                        buttonText='Add Video'
+                        />
                     <RichEditor
                         editor = { editor }
                         onChange = { this.props.updateOne }  
                     />
-                    :null }
+                    <div className='editorButton'>
+                        <button onClick={this.postData}>
+                            Post</button>   
+                    </div>
                 </div>
+                    :null }
             </div>
         )
     }

@@ -6,10 +6,9 @@ class Blog extends Component {
 
   render() {
     return (
-      <div>
+      <Fragment>
         <PostBlog />
-        Hello blog!
-      </div>
+      </Fragment>
     )
   }
 }

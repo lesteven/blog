@@ -45,19 +45,13 @@ const rawData = {
   entityMap: {},
   blocks: [
     {
-      text: 'this is the editor!',
+      text: 'type here!',
       key: 'foo',
       type: 'unstyled',
       entityRanges: [],
     },
   ],
 };
-
-/*
-console.log('in post blog module');
-// console.log(test)
-console.log(test.__proto__);
-*/
 
 
 // initial state

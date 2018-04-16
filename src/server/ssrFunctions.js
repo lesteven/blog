@@ -62,20 +62,8 @@ async function getData(req, res) {
 
     let preloadedState = store.getState();
     let context = {};
-/*
-    console.log('******** in server *');
-//    console.log(preloadedState.postBlog.editor);
-    console.log(preloadedState.postBlog.editor.__proto__);
-*/
-/*
-    let stringState = JSON.stringify(preloadedState);
-    console.log('stringState\n');
-    console.log(stringState);
-    let reverse = JSON.parse(stringState);
-    console.log('reverse\n');
-    console.log('__proto__', reverse.__proto__,'\n');
-*/
-    console.log('********* end of server **********');
+
+
     // render component to string
     const html = renderToString(
     <Provider store={store}>
