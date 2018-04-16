@@ -7,6 +7,7 @@ class Blog extends Component {
   render() {
     return (
       <div>
+        <PostBlog />
         Hello blog!
       </div>
     )

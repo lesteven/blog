@@ -3,9 +3,11 @@ import {AtomicBlockUtils,
         Editor, 
         EditorState, 
         RichUtils,
+        convertFromRaw,
         convertToRaw} from 'draft-js';
 import { connect } from 'react-redux';
-import {updateOne,
+import {convertData,
+        updateOne,
         updateImage,
         updateYT,
         postStatus} from '../../reduxModules/postBlogModule';
@@ -17,6 +19,17 @@ import InlineStyleControls from './components/InlineStyleControls.jsx';
 import TextInput from './components/TextInput.jsx';
 import { postData } from '../../reduxModules/fetchThunk';
 */
+
+
+/*
+  * Converted data cannot be created in redux store b/c JSON.stringify 
+  * in the server does not copy __proto__ from redux, therefore it will not
+  * correctly render Draftjs.
+  * To get around this, we create the draftjs data when the component is 
+  * mounted, and then render Draftjs. (data is still created in redux, just
+  * not stringified, which therefore would allow it to work)
+*/
+
 
 class PostBlog extends Component {
 /*
@@ -79,16 +92,22 @@ class PostBlog extends Component {
         postData('/api/editor','POST',data,postStatus);
     }
 */
+    componentDidMount() {
+      console.log('did mount called');
+      const { convertData } = this.props;
+      convertData(); 
+    }
     render() {
-    const {editor, youtube, imgURL, status} = this.props.postBlog;
-    const blog = {_id:0};
+    let {editor, youtube, imgURL, status, converted} = this.props.postBlog;
         return (
             <div className='dash-container'>
                 <div className='RichEditor-root'>
+                   { converted? 
                     <RichEditor
                         editor = { editor }
-                        onChange = {this.props.updateOne}  
+                        onChange = { this.props.updateOne }  
                     />
+                    :null }
                 </div>
             </div>
         )
@@ -104,6 +123,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return{
+        convertData: () => dispatch(convertData()),
         updateOne: (editor) => dispatch(updateOne(editor)),
         updateImage:(id,input)=>dispatch(updateImage(id,input)),
         updateYT:(id,input)=>dispatch(updateYT(id,input)),

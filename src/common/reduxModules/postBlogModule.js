@@ -4,7 +4,16 @@ import {Editor,
         convertToRaw,
         convertFromRaw} from 'draft-js';
 
+
+const convertAct = 'CONVERT_DATA';
+
 // action
+export function convertData() {
+    console.log('convert data called!');
+    return {
+      type: convertAct,
+    }
+}
 export function updateOne(editor) {
     return {
         type: 'UPDATE_ONE',
@@ -32,18 +41,45 @@ export function postStatus(status){
     }
 }
 
+const rawData = {
+  entityMap: {},
+  blocks: [
+    {
+      text: 'this is the editor!',
+      key: 'foo',
+      type: 'unstyled',
+      entityRanges: [],
+    },
+  ],
+};
+
+/*
+console.log('in post blog module');
+// console.log(test)
+console.log(test.__proto__);
+*/
+
 
 // initial state
 let initialState = {
-    editor: EditorState.createEmpty(),
+    editor: rawData,
     imgURL: "",
-    youtube:""
+    youtube:"",
+    converted: false,
 }
 
 // reducer 
 export const postBlog = (state = initialState, action) => {
     const {editor, status} = action;
     switch (action.type) {
+        case convertAct:
+            return {
+              ...state,
+              editor: EditorState.createWithContent(
+                convertFromRaw(state.editor)),
+              converted: true,
+
+            }
         case 'UPDATE_ONE':    
             return {
                 ...state,

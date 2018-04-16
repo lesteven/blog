@@ -28,12 +28,13 @@ class RichEditor extends Component{
     }
     render() {
     let className = 'RichEditor-editor Border';
-    const {editor,onChange} = this.props;
+    const {editor, onChange} = this.props;
         return(
             <div className={className} onClick={this.focus}>
                 <Editor
-                    editorState = {editor}
-                    onChange={onChange}
+                    editorKey = 'foobaz'
+                    editorState = { editor }
+                    onChange={ onChange }
                     handleKeyCommand={this.handleKey}
                     ref='editor'
                     spellCheck={true}
@@ -43,7 +44,6 @@ class RichEditor extends Component{
         )
     }
 }
-
 
 
 
