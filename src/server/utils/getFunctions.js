@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 
-exports.getAll =(req,res,model) =>{
+exports.getAll =(req, res, model, num) =>{
 	model.find({}).sort('-createdAt').limit(num).exec(function(err,content){
 		if(err){
 			//throw err;

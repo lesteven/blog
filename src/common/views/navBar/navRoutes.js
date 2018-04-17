@@ -1,5 +1,6 @@
 import Home from '../home/Home';
 import About from '../about/About';
+import Blog from '../blog/Blog';
 
 
 const navRoutes = {
@@ -18,6 +19,14 @@ const navRoutes = {
       exact: true, 
       title: 'About', 
     },
+
+    {
+      path: '/blog', 
+      component: Blog, 
+      exact: true, 
+      title: 'Blog', 
+    },
+    
   ],
 
 };

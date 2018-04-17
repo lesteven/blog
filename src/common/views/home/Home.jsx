@@ -5,11 +5,6 @@ import { connect } from 'react-redux';
 
 
 class Home extends Component {
-    componentDidMount() {
-      const { fetchData } = this.props;
-      fetchData('./api/test');
-
-    }
     render (){
       return (
         <Fragment>

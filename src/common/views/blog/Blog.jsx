@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import { connect } from 'react-redux';
 import {fetchData,postData} from '../../reduxModules/fetchThunk';
-import Paginate from '../components/Paginate.jsx';
+import Paginate from '../../sharedViews/paginate/Paginate.jsx';
 import {editorAct} from '../../reduxModules/editorModule';
 import {Editor, 
         EditorState, 
@@ -10,18 +10,18 @@ import {Editor,
         convertFromRaw} from 'draft-js';
 import {styleMap,
         getBlockStyle,
-        mediaBlockRenderer} from '../adminComp/editorStyle.js';
+        mediaBlockRenderer} from '../../sharedViews/blogComponents/editorStyle.js';
 
 
 class Blog extends Component{
     componentDidMount(){
         const {fetchData,editorAct} = this.props;
-        fetchData(`/editor/get/data/${location.search}`,editorAct)
+        fetchData(`/api/editor/data/${location.search}`,editorAct)
     }
     componentWillReceiveProps(nextProps){
         const {fetchData,editorAct,location} = this.props;
         if(nextProps.location.search !== location.search){
-            fetchData(`/editor/get/data/${nextProps.location.search}`,
+            fetchData(`/api/editor/data/${nextProps.location.search}`,
                 editorAct)
         }  
     }

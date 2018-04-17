@@ -4,12 +4,16 @@ import { view } from './reduxModules/viewModule';
 import { authReducer as auth } from './reduxModules/authModule';
 import { delayReducer as delay } from './reduxModules/delayModule';
 import { postBlog } from './reduxModules/postBlogModule';
+import { editor } from './reduxModules/editorModule';
+
 
 export const reducers = combineReducers({
   view,
   auth,
   delay,
-  postBlog 
+  postBlog,
+  editor,
+ 
 });
 
 
