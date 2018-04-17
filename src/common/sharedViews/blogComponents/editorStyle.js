@@ -35,6 +35,7 @@ const Image = (props) => {
 const Video = (props) => {
     return <video controls src={props.src} style={styles.media} />;
 };
+
 const YouTube = (props) => {
     return(
         <iframe width="100%" height="315"
@@ -44,6 +45,7 @@ const YouTube = (props) => {
         </iframe>
     )
 }
+
 const Media = (props) => {
     const entity = props.contentState.getEntity(
       props.block.getEntityAt(0)

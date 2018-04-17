@@ -11,6 +11,7 @@ import {Editor,
 import {styleMap,
         getBlockStyle,
         mediaBlockRenderer} from '../../sharedViews/blogComponents/editorStyle.js';
+import style from './blog.css';
 
 
 class Blog extends Component{

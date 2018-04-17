@@ -44,7 +44,7 @@ const rawData = {
   entityMap: {},
   blocks: [
     {
-      text: 'type here!',
+      text: '',
       key: 'foo',
       type: 'unstyled',
       entityRanges: [],
