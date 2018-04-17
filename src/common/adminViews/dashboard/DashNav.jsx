@@ -20,6 +20,7 @@ class DashNav extends Component {
 
   render() {
   const { toggle } = this.props;
+  const { lstatus } = this.props.auth;
     return (
       <nav className = 'dash-topnav'>
         <a className='dtn-menu'> 
@@ -27,7 +28,9 @@ class DashNav extends Component {
         </a>
 
         <Link to = '/'> Home </Link>
+        { lstatus.user ?
         <Link to = '/admin' onClick = { this.logout }> Log Out </Link>
+        : null }
       </nav> 
     )
   }
