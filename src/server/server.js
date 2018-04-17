@@ -92,7 +92,7 @@ app.use(express.static('imgs'));
 app.use('/api', publicRouter);
 
 // admin api
-app.use('/aapi', adminRouter);
+app.use('/admapi', adminRouter);
 
 
 // use handleRender for each request

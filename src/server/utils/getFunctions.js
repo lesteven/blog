@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-var num = 3;
 
 
 exports.getAll =(req,res,model) =>{
@@ -16,7 +15,7 @@ exports.getAll =(req,res,model) =>{
 
 
 // Pagination functions
-exports.getOld = (req,res,model) =>{
+exports.getOld = (req, res, model, num) =>{
     if(mongoose.Types.ObjectId.isValid(req.query.old)){
         model.find({_id:{$lt:req.query.old}})
         .sort('-createdAt')
@@ -34,7 +33,7 @@ exports.getOld = (req,res,model) =>{
     }
 }
 
-exports.getNew = (req,res,model) =>{
+exports.getNew = (req, res, model, num) =>{
     if(mongoose.Types.ObjectId.isValid(req.query.new)){
         model.find({_id:{$gt:req.query.new}})
         .limit(num)

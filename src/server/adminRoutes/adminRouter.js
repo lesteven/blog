@@ -1,10 +1,10 @@
 const express = require('express');
 const adminRouter = express.Router();
+// routers
+const admEditorRouter = require('./admEditorRouter.js');
 
-adminRouter.route('/')
 
-  .get((req,res) => {
-    res.send('admin routes');
-  })
+adminRouter.use('/editor', admEditorRouter);
+
 
 export default adminRouter;

@@ -22,6 +22,8 @@ import { postData } from '../../reduxModules/fetchThunk';
 
 
 /*
+  * Post blog using draftjs
+  *
   * Converted data cannot be created in redux store b/c JSON.stringify 
   * in the server does not copy __proto__ from redux, therefore it will not
   * correctly render Draftjs.
@@ -88,7 +90,7 @@ class PostBlog extends Component {
 
         var contentState = editor.getCurrentContent();
         var data = {editor:JSON.stringify(convertToRaw(contentState))};
-        postData('/api/editor','POST',data,postStatus);
+        postData('/admapi/editor','POST',data,postStatus);
     }
     componentDidMount() {
       const { converted } = this.props.postBlog;
@@ -103,6 +105,7 @@ class PostBlog extends Component {
     const blog = {_id:0};
         return (
             <div className='dash-container'>
+            {status? <h3 className='success'>Blog Posted!</h3>:null}
                { converted? 
                 <div className='RichEditor-root'>
                     <BlockStyleControls editorState={editor}
