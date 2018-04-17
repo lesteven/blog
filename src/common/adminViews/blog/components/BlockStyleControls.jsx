@@ -3,7 +3,6 @@ import StyleButton from './StyleButton.jsx';
 
 const BlockStyleControls = (props) => {
     const {editorState} = props;
-    console.log(editorState);
     const selection = editorState.getSelection();
     const blockType = editorState
         .getCurrentContent()

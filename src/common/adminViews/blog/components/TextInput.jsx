@@ -1,4 +1,6 @@
 import React,{Component} from 'react';
+import styles from './component.css';
+
 
 class TextInput extends Component {
     updateInput=(e)=> {
@@ -13,7 +15,7 @@ class TextInput extends Component {
     render(){
         return(
             <form onSubmit={this.onSubmit} className='textInput'>
-                <input 
+                <input className = 'input-text'
                     type='text'
                     value={this.props.inputValue} 
                     onChange={this.updateInput} 

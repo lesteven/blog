@@ -9,7 +9,6 @@ const convertAct = 'CONVERT_DATA';
 
 // action
 export function convertData() {
-    console.log('convert data called!');
     return {
       type: convertAct,
     }

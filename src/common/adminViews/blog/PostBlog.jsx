@@ -91,9 +91,12 @@ class PostBlog extends Component {
         postData('/api/editor','POST',data,postStatus);
     }
     componentDidMount() {
-      console.log('did mount called');
-      const { convertData } = this.props;
-      convertData(); 
+      const { converted } = this.props.postBlog;
+      if (!converted) {
+        console.log('did mount called');
+        const { convertData } = this.props;
+        convertData(); 
+      }
     }
     render() {
     const {editor, youtube, imgURL, status, converted} = this.props.postBlog;
