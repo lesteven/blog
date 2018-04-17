@@ -11,7 +11,7 @@ import InlineStyleControls from './InlineStyleControls.jsx';
 import {styleMap,
         getBlockStyle,
         mediaBlockRenderer} from './editorStyle.js';
-import styles from '../richEditor.css';
+import styles from './richEditor.css';
 
 
 class RichEditor extends Component{

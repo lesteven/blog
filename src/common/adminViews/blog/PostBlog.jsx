@@ -12,10 +12,10 @@ import {convertData,
         updateYT,
         postStatus} from '../../reduxModules/postBlogModule';
 
-import RichEditor from './components/RichEditor.jsx';
+import RichEditor from '../../sharedViews/blogComponents/RichEditor.jsx';
 
-import BlockStyleControls from './components/BlockStyleControls.jsx';
-import InlineStyleControls from './components/InlineStyleControls.jsx';
+import BlockStyleControls from '../../sharedViews/blogComponents/BlockStyleControls.jsx';
+import InlineStyleControls from '../../sharedViews/blogComponents/InlineStyleControls.jsx';
 import TextInput from './components/TextInput.jsx';
 import { postData } from '../../reduxModules/fetchThunk';
 
