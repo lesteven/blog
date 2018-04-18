@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Route, Link, Switch } from 'react-router-dom';
-import nav from './navRoutes.js';
+import nav from '../navRoutes.js';
 import { BrowserRouter as Router } from 'react-router-dom';
 import styles from './navBar.css';
 import { connect } from 'react-redux';

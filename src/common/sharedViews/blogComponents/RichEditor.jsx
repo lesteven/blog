@@ -10,7 +10,7 @@ import BlockStyleControls from './BlockStyleControls.jsx';
 import InlineStyleControls from './InlineStyleControls.jsx';
 import {styleMap,
         getBlockStyle,
-        mediaBlockRenderer} from './editorStyle.js';
+        mediaBlockRenderer} from './mediaStyle.js';
 import styles from './richEditor.css';
 
 

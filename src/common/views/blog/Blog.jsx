@@ -10,14 +10,15 @@ import {Editor,
         convertFromRaw} from 'draft-js';
 import {styleMap,
         getBlockStyle,
-        mediaBlockRenderer} from '../../sharedViews/blogComponents/editorStyle.js';
+        mediaBlockRenderer} from '../../sharedViews/blogComponents/mediaStyle.js';
 import style from './blog.css';
 
 
 class Blog extends Component{
-    componentDidMount(){
-        const {fetchData,editorAct} = this.props;
-        fetchData(`/api/editor/data/${location.search}`,editorAct)
+    static fetchData({ store }) {
+        // const {fetchData,editorAct} = this.props;
+        return store.dispatch(
+          fetchData(`/api/editor/data/${location.search}`,editorAct));
     }
     componentWillReceiveProps(nextProps){
         const {fetchData,editorAct,location} = this.props;

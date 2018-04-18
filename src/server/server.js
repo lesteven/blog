@@ -16,7 +16,7 @@ import publicRouter from './publicRoutes/publicRouter';
 import adminRouter from './adminRoutes/adminRouter';
 
 // react server side
-import { handleRender } from './ssrFunctions';
+import { handleRender } from './ssr/ssrFunctions';
 
 
 // server

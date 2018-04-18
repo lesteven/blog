@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import NavBar from '../navBar/NavBar.jsx';
-import nav from '../navBar/navRoutes.js';
+import nav from '../navRoutes.js';
 
 class ClientTemplate extends Component {
 
