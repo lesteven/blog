@@ -17,7 +17,6 @@ delete window.__PRELOADED_STATE__;
 const store = configureStore(preloadedState);
 
 
-
 hydrate(
     <Provider store = {store}>    
         <BrowserRouter>

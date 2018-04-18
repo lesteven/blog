@@ -1,11 +1,13 @@
 import DashHome from './dashhome/DashHome';
 import Blog from './blog/Blog';
 
+const prefix = '/dashboard';
 
 const dashRoutes = {
 
   routes: [
     {
+      prefix,
       path: '/', 
       component: DashHome, 
       exact: true, 
@@ -13,6 +15,7 @@ const dashRoutes = {
     },
 
     {
+      prefix,
       path: '/blog', 
       component: Blog, 
       exact: true, 

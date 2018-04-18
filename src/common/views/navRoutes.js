@@ -3,10 +3,13 @@ import About from './about/About';
 import Blog from './blog/Blog';
 
 
+const prefix = '';
+
 const navRoutes = {
 
   routes: [
     {
+      prefix,
       path: '/', 
       component: Home, 
       exact: true, 
@@ -14,6 +17,7 @@ const navRoutes = {
     },
 
     {
+      prefix,
       path: '/about', 
       component: About, 
       exact: true, 
@@ -21,6 +25,7 @@ const navRoutes = {
     },
 
     {
+      prefix,
       path: '/blog', 
       component: Blog, 
       exact: true, 

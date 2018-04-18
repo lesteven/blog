@@ -6,6 +6,7 @@ import App from '../../common/App';
 import routeOptions from '../../common/routes';
 import navRoutes from '../../common/views/navRoutes';
 import configureStore from '../../common/configureStore';
+import getComponent from './findComponent';
 
 
 // create html and inject redux data into it
@@ -36,57 +37,8 @@ function renderFullPage(html, preloadedState) {
 async function getData(req, res) { 
     // create store
     const store = configureStore();
-
-    // react router setup
-    let foundPath = null;
-
-
-    // grab path that matches with req.url along with component
-    let { path, component } = routeOptions.routes.find(({ path, exact }) => {
-      foundPath = matchPath(req.url, { 
-                                        path, 
-                                        exact:true, 
-                                        strict: false 
-                                      });
-      return foundPath;
-    }) || {};
-
-    let foundPath2 = null;
-    let test = null;
-    if (!foundPath) {
-      test  = navRoutes.routes.find(({ path, exact }) => {
-         foundPath2 = matchPath(req.url, { 
-                                            path, 
-                                            exact:true, 
-                                            strict: false 
-                                          });
-        console.log('inside', foundPath2);
-        return foundPath2;
-      }) || {};
-      console.log('inside test', test);
-    }
-  
-    console.log(req.url);
-    console.log('fp2', foundPath2)
-    console.log('test', test);
-    console.log('path2', foundPath2.component);
-    console.log('comp2', foundPath2.path);
-
-    // check for react component and fetch data
-    if (!component) {
-      component = {};
-    }
-    if (!component.fetchData) {
-      console.log('no fetches*****');
-      component.fetchData = () => new Promise(resolve => resolve());
-    }
-   
-
-    console.log('path ->', path);
-    console.log('component ->', component);
-    console.log('foundpath ->', foundPath)
-
-  
+    
+    let { component, foundPath } = getComponent(req);
 
  
     const fullUrl = req.protocol + '://' + req.get('host');
