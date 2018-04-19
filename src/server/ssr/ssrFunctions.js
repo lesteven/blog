@@ -42,9 +42,16 @@ async function getData(req, res) {
 
  
     const fullUrl = req.protocol + '://' + req.get('host');
+/*
+    console.log('** full url', fullUrl);
 
-    await component.fetchData({ store, params: (foundPath? foundPath.params :
+    console.log('~ foundPath', foundPath);
+    console.log('foundPath.params', foundPath.params);
+*/
+    let data = await component.fetchData({ store, params: (foundPath? foundPath.params :
       {}) }, fullUrl)
+
+    console.log('~~ data from await *********', data);
 
     let preloadedState = store.getState();
     let context = {};

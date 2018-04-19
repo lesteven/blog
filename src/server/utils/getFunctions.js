@@ -79,6 +79,7 @@ async function checkPage(req,res,model,data){
             page:paginate
         } 
     //    console.log(fetchedData);
+        console.log('~~ data will be sent');
         res.json(fetchedData);
     }
     catch(e) {

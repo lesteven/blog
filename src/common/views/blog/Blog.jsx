@@ -12,21 +12,43 @@ import {styleMap,
         getBlockStyle,
         mediaBlockRenderer} from '../../sharedViews/blogComponents/mediaStyle.js';
 import style from './blog.css';
-
+import { asyncEditorAct } from '../../reduxModules/asyncEditor';
 
 class Blog extends Component{
-    static fetchData({ store }) {
+    
+    static fetchData({ store }, url) {
+        console.log('**** from fetch blog!**');
         // const {fetchData,editorAct} = this.props;
+        /*
         return store.dispatch(
           fetchData(`/api/editor/data/${location.search}`,editorAct));
+        */
+        
+        console.log(`${url}/api/editor/data`); 
+/*
+        return store.dispatch(
+          fetchData(`${url}/api/editor/data`,editorAct));
+  */      
+
+        return store.dispatch(asyncEditorAct(`${url}/api/editor/data`));
+//        return store.dispatch(asyncEditorAct(`${url}/api/test`));
+    }
+    
+   /* 
+    componentDidMount = () => {
+        const {fetchData,editorAct} = this.props;
+        console.log('** ** ** did mounnt called!');
+        fetchData(`/api/editor/data/${location.search}`,editorAct);
     }
     componentWillReceiveProps(nextProps){
         const {fetchData,editorAct,location} = this.props;
         if(nextProps.location.search !== location.search){
+            console.log('*** location.search', nextProps.location.search);
             fetchData(`/api/editor/data/${nextProps.location.search}`,
                 editorAct)
         }  
     }
+    */
     list(){
         let className = 'RichEditor-editor';
         const {converted} = this.props.editor;

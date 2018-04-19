@@ -5,7 +5,7 @@ import { authReducer as auth } from './reduxModules/authModule';
 import { delayReducer as delay } from './reduxModules/delayModule';
 import { postBlog } from './reduxModules/postBlogModule';
 import { editor } from './reduxModules/editorModule';
-
+import { asyncEditor } from './reduxModules/asyncEditor';
 
 export const reducers = combineReducers({
   view,
@@ -13,7 +13,7 @@ export const reducers = combineReducers({
   delay,
   postBlog,
   editor,
- 
+  asyncEditor, 
 });
 
 

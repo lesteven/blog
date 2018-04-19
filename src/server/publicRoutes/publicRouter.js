@@ -7,11 +7,12 @@ const publicRouter = express.Router();
 const authRouter = require('./authRouter');
 const lockedRouter = require('./lockedRouter');
 const editorRouter = require('./editorRouter');
-
+const testRouter = require('./testRouter');
 
 publicRouter.use('/auth', authRouter);
 publicRouter.use('/locked', lockedRouter);
 publicRouter.use('/editor', editorRouter);
+publicRouter.use('/test', testRouter);
 
 
 
