@@ -34,7 +34,7 @@ class Blog extends Component{
 //        return store.dispatch(asyncEditorAct(`${url}/api/test`));
     }
     
-   /* 
+    
     componentDidMount = () => {
         const {fetchData,editorAct} = this.props;
         console.log('** ** ** did mounnt called!');
@@ -48,7 +48,7 @@ class Blog extends Component{
                 editorAct)
         }  
     }
-    */
+    
     list(){
         let className = 'RichEditor-editor';
         const {converted} = this.props.editor;
@@ -83,6 +83,12 @@ class Blog extends Component{
     render(){
     const {path} = this.props.match;
     const {converted, db} = this.props.editor;
+    /*
+    console.log('async editor',this.props.asyncEditor.converted[0].__proto__);
+    if (converted) {
+      console.log('editor', converted[0].__proto__);
+    }
+    */
         return(
             <div className='mainBlogs'>
                 {converted?this.list():null}         
@@ -97,7 +103,8 @@ class Blog extends Component{
 
 const mapStateToProps = (state) =>{
 	return{
-		editor:state.editor
+		editor:state.editor,
+    asyncEditor:state.asyncEditor,
 	};
 };
 

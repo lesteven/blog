@@ -57,6 +57,17 @@ async function getData(req, res) {
     let context = {};
 
 
+    function test() {
+      return {
+        a:'hello',
+      }
+    }
+    test.prototype.hello = function() { console.log('hello') };
+/*
+    console.log('~~ inside ssrFunction');
+    console.log(preloadedState.asyncEditor.db.data[0].__proto__);
+    console.log(preloadedState.asyncEditor.converted[0].__proto__);
+*/
     // render component to string
     const html = renderToString(
     <Provider store={store}>

@@ -16,12 +16,10 @@ export function asyncEditorAct(url){
     let res = await fetchData(url).catch(err => console.log('error')); 
 
     let data = await res.json();
-    console.log('inside asyncEditor');
-    console.log(url);
-    console.log(data); 
 
     dispatch({
       type: editorData,
+      editor:data,
     });
 
 	}
@@ -56,11 +54,11 @@ export const asyncEditor =(state={},action)=>{
 	switch(action.type){
 		case editorData:
 			return {
-/*
+
                 ...state,
                 db: editor,
                 converted: editor.data?convert(editor.data):null
-*/
+
                 }
     case 'STATUS':
         return{
