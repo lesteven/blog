@@ -15,35 +15,18 @@ import style from './blog.css';
 import { asyncEditorAct } from '../../reduxModules/asyncEditor';
 
 class Blog extends Component{
-    
+   /* 
     static fetchData({ store }, url) {
-        console.log('**** from fetch blog!**');
-        // const {fetchData,editorAct} = this.props;
-        /*
-        return store.dispatch(
-          fetchData(`/api/editor/data/${location.search}`,editorAct));
-        */
-        
-        console.log(`${url}/api/editor/data`); 
-/*
-        return store.dispatch(
-          fetchData(`${url}/api/editor/data`,editorAct));
-  */      
-
         return store.dispatch(asyncEditorAct(`${url}/api/editor/data`));
-//        return store.dispatch(asyncEditorAct(`${url}/api/test`));
     }
-    
-    
+*/
     componentDidMount = () => {
         const {fetchData,editorAct} = this.props;
-        console.log('** ** ** did mounnt called!');
         fetchData(`/api/editor/data/${location.search}`,editorAct);
     }
     componentWillReceiveProps(nextProps){
         const {fetchData,editorAct,location} = this.props;
         if(nextProps.location.search !== location.search){
-            console.log('*** location.search', nextProps.location.search);
             fetchData(`/api/editor/data/${nextProps.location.search}`,
                 editorAct)
         }  
@@ -52,19 +35,21 @@ class Blog extends Component{
     list(){
         let className = 'RichEditor-editor';
         const {converted} = this.props.editor;
+
         return converted.map(e => 
-            <div key = {e._id} className='RichEditor-root'>
-                <div className={className}>
-                <Editor
-                    editorState={e.editor}
-                    blockStyleFn={getBlockStyle}
-                    blockRendererFn={mediaBlockRenderer}
-                    customStyleMap={styleMap}
-                    readOnly={true}
-                />
-                </div>
-                <p className='date'>{new Date(e.createdAt).toDateString()}</p>
+          <div key = {e._id} className='RichEditor-root'>
+            <div className={className}>
+            <Editor
+                editorState={e.editor}
+                blockStyleFn={getBlockStyle}
+                blockRendererFn={mediaBlockRenderer}
+                customStyleMap={styleMap}
+                readOnly={true}
+            />
             </div>
+            <p className='date'> 
+              {new Date(e.createdAt).toDateString()}</p>
+          </div>
         )
     }
 	blogID=()=>{
@@ -83,12 +68,6 @@ class Blog extends Component{
     render(){
     const {path} = this.props.match;
     const {converted, db} = this.props.editor;
-    /*
-    console.log('async editor',this.props.asyncEditor.converted[0].__proto__);
-    if (converted) {
-      console.log('editor', converted[0].__proto__);
-    }
-    */
         return(
             <div className='mainBlogs'>
                 {converted?this.list():null}         
@@ -104,7 +83,6 @@ class Blog extends Component{
 const mapStateToProps = (state) =>{
 	return{
 		editor:state.editor,
-    asyncEditor:state.asyncEditor,
 	};
 };
 

@@ -9,6 +9,16 @@ import configureStore from '../../common/configureStore';
 import getComponent from './findComponent';
 
 
+/*
+* Control flow
+* make redux store and fetch all required data
+* turn react component and redux data to string
+* inject those two data into the html page
+* on client, html takes stringified redux data and
+*  puts in into store
+*
+*/
+
 // create html and inject redux data into it
 function renderFullPage(html, preloadedState) {
   return `
@@ -57,17 +67,6 @@ async function getData(req, res) {
     let context = {};
 
 
-    function test() {
-      return {
-        a:'hello',
-      }
-    }
-    test.prototype.hello = function() { console.log('hello') };
-/*
-    console.log('~~ inside ssrFunction');
-    console.log(preloadedState.asyncEditor.db.data[0].__proto__);
-    console.log(preloadedState.asyncEditor.converted[0].__proto__);
-*/
     // render component to string
     const html = renderToString(
     <Provider store={store}>

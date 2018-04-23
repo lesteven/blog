@@ -54,12 +54,10 @@ export const asyncEditor =(state={},action)=>{
 	switch(action.type){
 		case editorData:
 			return {
-
-                ...state,
-                db: editor,
-                converted: editor.data?convert(editor.data):null
-
-                }
+            ...state,
+            db: editor,
+            converted: editor.data?convert(editor.data):null
+          }
     case 'STATUS':
         return{
             ...state,
