@@ -2,6 +2,7 @@ var express = require('express');
 var editorRouter = express.Router();
 var Editor = require('../models/editor');
 var get = require('../utils/getFunctions');
+
 const num = 3;
 
 editorRouter.route('/:id')

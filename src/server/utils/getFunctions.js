@@ -2,15 +2,18 @@ var mongoose = require('mongoose');
 
 
 exports.getAll =(req, res, model, num) =>{
-	model.find({}).sort('-createdAt').limit(num).exec(function(err,content){
-		if(err){
-			//throw err;
-			//console.log(err)
-			res.json({err:'error'});
-		}
-//        console.log(content); 
-        checkPage(req,res,model,content);
-	})
+	model.find({})
+        .sort('-createdAt')
+        .limit(num)
+        .exec(function(err,content){
+          if(err){
+            //throw err;
+            //console.log(err)
+            res.json({err:'error'});
+          }
+      //        console.log(content); 
+            checkPage(req,res,model,content);
+        })
 }
 
 

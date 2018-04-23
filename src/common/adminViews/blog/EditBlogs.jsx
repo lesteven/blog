@@ -13,12 +13,12 @@ import {updateInput,updateYT} from '../../reduxModules/editorModule';
 class EditBlogs extends Component{
     componentDidMount(){
         const {fetchData,editorAct} = this.props;
-        fetchData(`/admapi/editor/data/${location.search}`,editorAct)
+        fetchData(`/api/editor/data/${location.search}`,editorAct)
     }
     componentWillReceiveProps(nextProps){
         const {fetchData,editorAct,location} = this.props;
         if(nextProps.location.search !== location.search){
-          fetchData(`/admapi/editor/data/${nextProps.location.search}`,
+          fetchData(`/api/editor/data/${nextProps.location.search}`,
                 editorAct)
         }  
     }
@@ -40,7 +40,7 @@ class EditBlogs extends Component{
     delete=(data)=>{
         const id = data._id;
         const {postData,editorAct} = this.props;
-        postData('/api/editor','DELETE',{_id:id},editorAct);
+        postData('/admapi/editor','DELETE',{_id:id},editorAct);
     }
     put=(data)=>{
 //        console.log(data)
@@ -50,7 +50,7 @@ class EditBlogs extends Component{
             _id:data._id,
             editor:JSON.stringify(convertToRaw(contentState))
         }
-        postData('/api/editor','PUT',obj,postStatus); 
+        postData('/admapi/editor','PUT',obj,postStatus); 
     }
 	blogID=()=>{
         const {data} = this.props.editor.db;

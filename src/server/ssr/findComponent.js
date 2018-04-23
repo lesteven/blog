@@ -28,7 +28,7 @@ const iterateRoutes = (req, level) => {
 
 const getComponent = (req) => {
     const urlArr = getArr(req);
-    console.log('** req',req.url, urlArr, urlArr.length);
+    // console.log('** req',req.url, urlArr, urlArr.length);
 
 
     // react router setup
@@ -38,11 +38,11 @@ const getComponent = (req) => {
     // check top level router
 
     let { path, component, foundPath } = iterateRoutes(req,topLevel);
-
+/*
     console.log('~ path: ', path);
     console.log('~ component: ', component);
     console.log('~ foundPath: ', foundPath);
-
+*/
     // if path not found in upper level, look at lower levels
 
     let comp2 = null;
@@ -52,16 +52,14 @@ const getComponent = (req) => {
       switch (url) {
         case 'dashboard':
           comp2 = iterateRoutes(req,dashLevel);
-          console.log('**from dashbaord');
+          // console.log('**from dashbaord');
           break;
         default:
           comp2 = iterateRoutes(req,clientLevel);
-          console.log('** from home');
+          // console.log('** from home');
       }
     }
     if (comp2) {
-      console.log('comp2!');
-      console.log(comp2);
       component = comp2.component;
       path = comp2.path;
       foundPath = comp2.path;

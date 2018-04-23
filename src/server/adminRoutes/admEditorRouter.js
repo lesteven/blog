@@ -4,6 +4,7 @@ var Editor = require('../models/editor');
 var crud = require('../utils/crudFunctions');
 var get = require('../utils/getFunctions');
 
+const items = 3;
 
 editorRouter.route('/')
 
@@ -12,7 +13,7 @@ editorRouter.route('/')
 })
 
 .delete(function(req,res){
-    crud.delete(req,res,Editor,get.getAll)
+    crud.delete(req, res, Editor, items, get.getAll)
 })
 
 .put(function(req,res){

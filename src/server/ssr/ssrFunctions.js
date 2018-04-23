@@ -61,7 +61,7 @@ async function getData(req, res) {
     let data = await component.fetchData({ store, params: (foundPath? foundPath.params :
       {}) }, fullUrl)
 
-    console.log('~~ data from await *********', data);
+//    console.log('~~ data from await *********', data);
 
     let preloadedState = store.getState();
     let context = {};

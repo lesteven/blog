@@ -7,13 +7,13 @@ var mongoose = require('mongoose');
 * Callback will send response back to client 
 */
 
-exports.delete = (req,res,model,cb) =>{
+exports.delete = (req,res,model,num,cb) =>{
 	model.findOneAndRemove(req.body).exec(function(err,removed){
 		if(err){
 			//console.log(err);
 			res.json({err:'error'})
 		}
-		cb(req,res,model);
+		cb(req,res,model,num);
 	})
 }
 
