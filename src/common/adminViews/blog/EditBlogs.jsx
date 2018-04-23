@@ -7,18 +7,18 @@ import { editorAct,
         updateEditor } from '../../reduxModules/editorModule';
 import EditBlog from './components/EditBlog.jsx';
 import {Editor, EditorState, RichUtils,convertToRaw} from 'draft-js';
-import {updateInput,updateYT} from '../reduxModules/inputModule';
+import {updateInput,updateYT} from '../../reduxModules/editorModule';
 
 
 class EditBlogs extends Component{
     componentDidMount(){
         const {fetchData,editorAct} = this.props;
-        fetchData(`/editor/get/data/${location.search}`,editorAct)
+        fetchData(`/admapi/editor/data/${location.search}`,editorAct)
     }
     componentWillReceiveProps(nextProps){
         const {fetchData,editorAct,location} = this.props;
         if(nextProps.location.search !== location.search){
-            fetchData(`/editor/get/data/${nextProps.location.search}`,
+          fetchData(`/admapi/editor/data/${nextProps.location.search}`,
                 editorAct)
         }  
     }

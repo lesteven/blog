@@ -17,6 +17,22 @@ export function postStatus(status){
         status
     }
 }
+// actions for image and youtube inputs
+export function updateInput(id,input) {
+    return {
+        type: 'UPDATE_INPUT',
+        id,
+        input
+    }
+}
+
+export function updateYT(id,input) {
+    return {
+        type: 'UPDATE_YT',
+        id,
+        input
+    }
+}
 /******* editor action **********/
 export function updateEditor(id,editorState){
     return{

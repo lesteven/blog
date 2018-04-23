@@ -5,12 +5,12 @@ import {AtomicBlockUtils,
         RichUtils,
         convertToRaw,
         convertFromRaw} from 'draft-js';
-import BlockStyleControls from '../adminComp/BlockStyleControls.jsx';
-import InlineStyleControls from '../adminComp/InlineStyleControls.jsx';
+import BlockStyleControls from '../../../sharedViews/blogComponents/BlockStyleControls.jsx';
+import InlineStyleControls from '../../../sharedViews/blogComponents/InlineStyleControls.jsx';
 import {styleMap,
         getBlockStyle,
-        mediaBlockRenderer} from '../adminComp/editorStyle.js';
-import TextInput from '../adminComp/TextInput.jsx';
+        mediaBlockRenderer} from '../../../sharedViews/blogComponents/mediaStyle.js';
+import TextInput from './TextInput.jsx';
 
 
 class EditBlog extends Component{
