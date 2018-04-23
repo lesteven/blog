@@ -12,7 +12,16 @@ import {styleMap,
         getBlockStyle,
         mediaBlockRenderer} from '../../sharedViews/blogComponents/mediaStyle.js';
 import style from './blog.css';
-import { asyncEditorAct } from '../../reduxModules/asyncEditor';
+
+/*
+* Blog on client 
+* Does not use SSR b/c draftjs is incompatible.
+* (draftjs data has __proto__ which disappears after stringifying
+* on server)
+* Fetches data from server after mounting.
+* Paginate changes url, for which comp will receive new props ->
+* causing it to fetch new data according to input from the url
+*/
 
 class Blog extends Component{
    /* 

@@ -22,7 +22,7 @@ class Admin extends Component {
     }
   }
   goToDash = () => {
-    console.log(this.props.history)
+    // console.log(this.props.history)
     this.props.history.push('/dashboard');
   }
   adminForm = () => {
