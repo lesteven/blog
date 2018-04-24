@@ -18,6 +18,8 @@ exports.getAll =(req, res, model, num) =>{
 
 
 // Pagination functions
+
+// get old data
 exports.getOld = (req, res, model, num) =>{
     if(mongoose.Types.ObjectId.isValid(req.query.old)){
         model.find({_id:{$lt:req.query.old}})
@@ -36,6 +38,7 @@ exports.getOld = (req, res, model, num) =>{
     }
 }
 
+// get new data
 exports.getNew = (req, res, model, num) =>{
     if(mongoose.Types.ObjectId.isValid(req.query.new)){
         model.find({_id:{$gt:req.query.new}})
@@ -53,29 +56,19 @@ exports.getNew = (req, res, model, num) =>{
     }
 }
 
+
+// check to see if there are new or old content
 async function checkPage(req,res,model,data){
     try {
         var paginate = {};
+        const num = 1;
         //console.log('checkPage new function'); 
         let [newpage,oldpage] = await Promise.all([
-                            findNew(paginate, model, data),
-                            findOld(paginate, model, data)
+                            findNew(model, data[0], num),
+                            findOld(model, data[data.length-1], num)
                             ])
         //console.log('@@@@@@@@@@@ testing @@@@@@@@@@@2');
-
-        if (newpage[0]) {
-            paginate.new = true;
-        }
-        else {
-            paginate.new = false;
-        }
-
-        if (oldpage[0]) {
-            paginate.old = true;
-        }
-        else {
-            paginate.old = false;
-        }
+        let paginate = createPageObject(newpage, oldpage);
 
         const fetchedData = {
             data:data,
@@ -86,22 +79,66 @@ async function checkPage(req,res,model,data){
         res.json(fetchedData);
     }
     catch(e) {
+        console.log(e);
         res.json({err:'error'});
     }
 }
 
-function findNew(paginate, model, data) {
+
+function findNew(model, dataID, num) {
  //   console.log('from new', paginate);
-    return model.find({_id:{$gt:data[0]}})
-    .limit(1)
+    return model.find({_id:{$gt:dataID}})
+    .limit(num)
     .exec();
 }
-function findOld(paginate, model, data) {
+function findOld(model, dataID, num) {
    // console.log('from old', paginate);
-    return model.find({_id:{$lt:data[data.length-1]}})
+    return model.find({_id:{$lt:dataID}})
     .sort('-createdAt')
-    .limit(1)
+    .limit(num)
     .exec();
 }
 
+// when deleting data
+
+export async function renewContent(req, res, model) {
+  console.log('renew content function');
+  try {
+    const num = 3;
+    let [newpage,oldpage] = await Promise.all([
+                        findNew(model, req.body, num),
+                        findOld(model, req.body, num)
+                        ])
+    let paginate = createPageObject(newpage, oldpage);
+    console.log(paginate);
+    let newData = null;
+    newData = [newpage[0], ...oldpage];
+    console.log('data', newData);
+  }
+  catch(e) {
+    res.json({err:'error'});
+  }
+}
+
+function createPageObject(newpage, oldpage) {
+  let paginate = {};
+  if (newpage[0]) {
+      paginate.new = true;
+  }
+  else {
+      paginate.new = false;
+  }
+
+  if (oldpage[0]) {
+      paginate.old = true;
+  }
+  else {
+      paginate.old = false;
+  }
+  return paginate;
+}
+
+function createDataObject(newpage, oldpage) {
+
+}
 
