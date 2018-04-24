@@ -110,12 +110,11 @@ export async function renewContent(req, res, model) {
                         findOld(model, req.body, num)
                         ])
     let paginate = createPageObject(newpage, oldpage);
-    console.log(paginate);
-    let newData = null;
-    newData = [newpage[0], ...oldpage];
+    let newData = createDataObject(newpage, oldpage);
     console.log('data', newData);
   }
   catch(e) {
+    console.log(e);
     res.json({err:'error'});
   }
 }
@@ -139,6 +138,25 @@ function createPageObject(newpage, oldpage) {
 }
 
 function createDataObject(newpage, oldpage) {
-
+  let newData = null;
+  // console.log('do', newpage[0]);
+  //  console.log('do', oldpage[0]);
+  
+  if (newpage[0] && oldpage[0]) {
+    newData = [newpage[0], ...oldpage].slice(0,3);    
+  }
+  if (!newpage[0] && oldpage[0]) {
+    newData = oldpage;
+  }
+  if (newpage[0] && !oldpage[0]) {
+    newData = newpage.reverse();    
+  }
+  if (!newpage[0] && !oldpage[0]) {
+    newData = [];
+  }
+  
+  return newData;
 }
+
+
 
