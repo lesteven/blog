@@ -101,7 +101,7 @@ function findOld(model, dataID, num) {
 
 // when deleting data
 
-export async function renewContent(req, res, model) {
+export async function renewContent(req, res, model, num) {
   console.log('renew content function');
   try {
     const num = 3;
@@ -109,9 +109,17 @@ export async function renewContent(req, res, model) {
                         findNew(model, req.body, num),
                         findOld(model, req.body, num)
                         ])
-    let paginate = createPageObject(newpage, oldpage);
-    let newData = createDataObject(newpage, oldpage);
-    console.log('data', newData);
+//    let paginate = createPageObject(newpage, oldpage);
+    let newData = createDataObject(newpage, oldpage, num);
+    checkPage(req,res,model,newData);
+/*
+    const fetchedData = {
+        data:data,
+        page:paginate
+    } 
+
+    res.json(fetchedData);
+  */  
   }
   catch(e) {
     console.log(e);
@@ -137,13 +145,13 @@ function createPageObject(newpage, oldpage) {
   return paginate;
 }
 
-function createDataObject(newpage, oldpage) {
+function createDataObject(newpage, oldpage, num) {
   let newData = null;
   // console.log('do', newpage[0]);
   //  console.log('do', oldpage[0]);
   
   if (newpage[0] && oldpage[0]) {
-    newData = [newpage[0], ...oldpage].slice(0,3);    
+    newData = [newpage[0], ...oldpage].slice(0,num);    
   }
   if (!newpage[0] && oldpage[0]) {
     newData = oldpage;

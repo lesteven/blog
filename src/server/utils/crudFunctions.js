@@ -9,11 +9,12 @@ var mongoose = require('mongoose');
 
 exports.delete = (req,res,model,num,cb) =>{
 	model.findOneAndRemove(req.body).exec(function(err,removed){
+    let copy = {...req}
 		if(err){
 			//console.log(err);
 			res.json({err:'error'})
 		}
-		cb(req,res,model,num);
+		cb(copy,res,model,num);
 	})
 }
 

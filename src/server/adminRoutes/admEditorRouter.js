@@ -14,8 +14,8 @@ editorRouter.route('/')
 
 .delete(function(req,res){
     console.log('req.body', req.body);
-    get.renewContent(req,res, Editor);
-    // crud.delete(req, res, Editor, items, get.getAll)
+//    get.renewContent(req,res, Editor);
+    crud.delete(req, res, Editor, items, get.renewContent)
 })
 
 .put(function(req,res){

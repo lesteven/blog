@@ -17,7 +17,8 @@ class EditBlogs extends Component{
     }
     componentWillReceiveProps(nextProps){
         const {fetchData,editorAct,location} = this.props;
-        if(nextProps.location.search !== location.search){
+        if(nextProps.location.search !== location.search && 
+            !nextProps.editor.converted.delete){
           fetchData(`/api/editor/data/${nextProps.location.search}`,
                 editorAct)
         }  
@@ -74,7 +75,7 @@ class EditBlogs extends Component{
 				{converted? this.list():null}
                 {converted? <Paginate page = {db.page} path = {path} 
                     modelID={this.blogID}/> 
-                    :null}
+                    :<p>there's nothing here!</p>}
             </div>
         )
     }
