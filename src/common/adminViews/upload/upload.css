@@ -13,3 +13,11 @@
   justify-content:center;
   align-items:center;
 }
+.uploaded-images {
+  text-align:center;
+  padding:2vh;
+}
+.uploaded-images img {
+  height:10vh;
+  padding:1vw;
+}
