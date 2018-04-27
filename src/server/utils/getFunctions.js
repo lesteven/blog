@@ -112,21 +112,14 @@ export async function renewContent(req, res, model, num) {
 //    let paginate = createPageObject(newpage, oldpage);
     let newData = createDataObject(newpage, oldpage, num);
     checkPage(req,res,model,newData);
-/*
-    const fetchedData = {
-        data:data,
-        page:paginate
-    } 
 
-    res.json(fetchedData);
-  */  
   }
   catch(e) {
     console.log(e);
     res.json({err:'error'});
   }
 }
-
+// to check if pagination is valid
 function createPageObject(newpage, oldpage) {
   let paginate = {};
   if (newpage[0]) {
@@ -144,7 +137,7 @@ function createPageObject(newpage, oldpage) {
   }
   return paginate;
 }
-
+// create data object once object is deleted
 function createDataObject(newpage, oldpage, num) {
   let newData = null;
   // console.log('do', newpage[0]);
