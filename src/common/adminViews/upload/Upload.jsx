@@ -7,10 +7,10 @@ class Upload extends Component {
 
   render() {
     return (
-      <div>
+      <Fragment>
         <DropImages />  
         <UploadedImages />
-      </div>
+      </Fragment>
     )
   }
 }

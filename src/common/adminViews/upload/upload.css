@@ -1,0 +1,15 @@
+.drop-images {
+  padding:5vh;
+  text-align:center;
+  display:flex;
+  justify-content:center;
+}
+.dropzone {
+  border:2px dashed #8563c9;
+  height:20vh;
+  flex:1;
+  width:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}

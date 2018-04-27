@@ -1,15 +1,15 @@
 import React, { Component, Fragment } from 'react';
 
 
-class UploadImages extends Component {
+class UploadedImages extends Component {
 
   render() {
     return (
       <div>
-        hello uploadimages!
+        hello uploadedimages!
       </div>
     )
   }
 }
 
-export default UploadImages;
+export default UploadedImages;
