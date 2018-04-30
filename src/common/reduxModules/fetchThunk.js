@@ -1,5 +1,8 @@
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
+require('babel-core/register');
+require('babel-polyfill');
+
 // action thunk
 
 export function fetchData(url, cb) {
@@ -33,3 +36,30 @@ export function postData(url, method, data, cb) {
       });
   };
 }
+/*
+export function postFile(url, method, data, cb) {
+  return (dispatch) => {
+    fetch(url, {
+      method,
+      body: data,
+  })
+    .then(res => res.json())
+    .catch(err => console.log('error', err))
+    .then(json => {
+      if (cb) {
+        cb(json);
+      }
+    })
+  }
+}
+*/
+export async function postFile(url ,method, data) {
+  const res = await fetch(url, {
+    method,
+    body: data
+  })
+  const json = await res.json();
+  return json;
+}
+
+
