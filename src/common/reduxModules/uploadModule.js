@@ -6,11 +6,18 @@ const uploadFiles = '/redux/uploadModule/UPLOAD';
 
 
 // action creators
-
+/*
 export const dropAct = (files) => {
   return {
     type: drop,
     files
+  }
+}
+*/
+export const dropAct = (data) => {
+  return {
+    type: drop,
+    data
   }
 }
 
@@ -23,15 +30,18 @@ export const uploadAct = files => {
 }
 const initialState = {
   files: [],
-
+  accepted:[],
+  rejected:[],
 }
 
 export const upload = (state = initialState, action) => {
+  let { data } = action;
   switch (action.type) {
     case drop:
       return {
         ...state,
-        files: action.files,
+        accepted:data.accepted,
+        rejected:data.rejected,
       }
     case uploadFiles:
       return {

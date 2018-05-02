@@ -1,8 +1,10 @@
 import { Router } from 'express';
-import multer from 'multer';
+// import multer from 'multer';
+import { IncomingForm } from 'formidable';
+import path from 'path';
+import fs from 'fs';
 
 
-const upload = multer({dest:'uploads/'});
 const admUploadRouter = Router();
 
 admUploadRouter.route('/')
@@ -11,9 +13,43 @@ admUploadRouter.route('/')
   res.send('upload router!');
 })
 
-.post(upload.array('photos',3), function(req,res) {
+.post( function(req,res) {
   console.log('admupload');
-//  console.log(req.file);
-})
+  const dir = 'uploads';
 
+  fs.readdir(dir, (err, files) => {
+    if (err) {
+      console.log(err);
+    }
+    uploadFiles(req,res, dir);
+    
+  })
+})
+function uploadFiles(req, res, dir) {
+
+  let form = new IncomingForm(),
+      files = [],
+      fields = [];
+
+//  console.log(path.resolve('/uploads'));
+  form.uploadDir = dir;
+  form.keepExtensions = true;
+  form
+    .on('field', (field,value) => {
+      console.log('field');
+      // console.log(field, value);
+      fields.push([field,value]); 
+    })
+    .on('file', (field, file) => {
+      console.log('file');
+      // console.log(field, file);
+      files.push([field,file]);
+    })
+    .on('end', () => {
+      console.log('upload done');
+      
+    })
+    form.parse(req);
+
+}
 export default admUploadRouter;
