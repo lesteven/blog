@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import DropZone from 'react-dropzone';
 import { connect } from 'react-redux';
 import { dropAct, uploadAct } from '../../reduxModules/uploadModule';
+import FlashMsg from '../../sharedViews/flashMsg/FlashMsg';
 
 
 class DropImages extends Component {
@@ -24,15 +25,20 @@ class DropImages extends Component {
             accept='image/*'
              onDrop = {(accepted,rejected)=>
                { dropAct({accepted,rejected})}}>
-            <p> Drag and drop images or click! </p>
+            <p> Drag and drop or click! </p>
           </DropZone>
+        </div>
+
+        <FlashMsg status = {upload.status} />
+
+        <div className='upload-button'>
+          <button onClick = {this.makeFormData}> Upload! </button>
         </div>
         <div className='uploaded-images'>
           <h2> Selected Images </h2>
           { upload.accepted.map(f => 
             <img key = {f.name} src= {f.preview} />) }
         </div>
-        <button onClick = {this.makeFormData}> Upload! </button>
       </Fragment>
     )
   }

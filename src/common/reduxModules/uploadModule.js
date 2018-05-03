@@ -31,7 +31,7 @@ const initialState = {
   files:[],
   accepted:[],
   rejected:[],
-  status:'',
+  status:''
 }
 
 

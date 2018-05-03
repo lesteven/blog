@@ -59,7 +59,7 @@ function uploadFiles(req, res, dir) {
     })
     .on('end', () => {
       console.log('upload done');      
-      res.json({success: 'success'});
+      res.json({success: 'images uploaded!'});
     })
     form.parse(req);
 }
