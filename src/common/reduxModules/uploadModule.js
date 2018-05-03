@@ -6,14 +6,6 @@ const uploadFiles = '/redux/uploadModule/UPLOAD';
 
 
 // action creators
-/*
-export const dropAct = (files) => {
-  return {
-    type: drop,
-    files
-  }
-}
-*/
 export const dropAct = (data) => {
   return {
     type: drop,
@@ -21,19 +13,29 @@ export const dropAct = (data) => {
   }
 }
 
-export const uploadAct = files => {
-  let status = postFile('/admapi/upload', 'POST', files);
+
+export const uploadCB = status => {
   return {
     type:uploadFiles,
-    status 
+    status, 
   }
 }
-const initialState = {
-  files: [],
-  accepted:[],
-  rejected:[],
+
+// thunk function
+export const uploadAct = files => {
+  return postFile('/admapi/upload', 'POST', files, uploadCB);
 }
 
+// initial state
+const initialState = {
+  files:[],
+  accepted:[],
+  rejected:[],
+  status:'',
+}
+
+
+// reducer
 export const upload = (state = initialState, action) => {
   let { data } = action;
   switch (action.type) {
@@ -46,10 +48,11 @@ export const upload = (state = initialState, action) => {
     case uploadFiles:
       return {
         ...state,
-        uploaded: action.files,
+        status: action.status,
       }
     default:
       return state;
   }
 }
+
 

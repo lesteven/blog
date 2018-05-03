@@ -36,7 +36,7 @@ export function postData(url, method, data, cb) {
       });
   };
 }
-/*
+
 export function postFile(url, method, data, cb) {
   return (dispatch) => {
     fetch(url, {
@@ -47,19 +47,11 @@ export function postFile(url, method, data, cb) {
     .catch(err => console.log('error', err))
     .then(json => {
       if (cb) {
-        cb(json);
+//        console.log(json);
+        dispatch(cb(json));
       }
     })
   }
-}
-*/
-export async function postFile(url ,method, data) {
-  const res = await fetch(url, {
-    method,
-    body: data
-  })
-  const json = await res.json();
-  return json;
 }
 
 

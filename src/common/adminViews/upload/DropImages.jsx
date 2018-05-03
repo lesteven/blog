@@ -8,7 +8,7 @@ class DropImages extends Component {
   makeFormData = () => {
     const { dropAct, upload, uploadAct } = this.props;
     let formData = null;
-    console.log(upload.accepted);
+
     if (upload.accepted[0]) {
       formData = new FormData();
       upload.accepted.map( f => formData.append(f.name, f));
@@ -28,7 +28,7 @@ class DropImages extends Component {
           </DropZone>
         </div>
         <div className='uploaded-images'>
-          <h2> Uploaded Images </h2>
+          <h2> Selected Images </h2>
           { upload.accepted.map(f => 
             <img key = {f.name} src= {f.preview} />) }
         </div>

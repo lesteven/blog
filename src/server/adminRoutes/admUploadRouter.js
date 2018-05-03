@@ -58,11 +58,11 @@ function uploadFiles(req, res, dir) {
       files.push([field,file]);
     })
     .on('end', () => {
-      console.log('upload done');
-      
+      console.log('upload done');      
+      res.json({success: 'success'});
     })
     form.parse(req);
-
 }
+
 
 export default admUploadRouter;
