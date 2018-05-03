@@ -19,21 +19,33 @@ admUploadRouter.route('/')
 
   fs.readdir(dir, (err, files) => {
     if (err) {
-      console.log(err);
+      makeDir(req, res, dir);
     }
-    uploadFiles(req,res, dir);
-    
+    else {
+      uploadFiles(req,res, dir);
+    }
   })
 })
+
+function makeDir(req, res, dir) {
+  fs.mkdir(dir, err => {
+    if (err) {
+      return console.log(err);
+    }
+    console.log('dir created!');
+    uploadFiles(req, res, dir);
+  })
+}
+
 function uploadFiles(req, res, dir) {
 
   let form = new IncomingForm(),
       files = [],
       fields = [];
 
-//  console.log(path.resolve('/uploads'));
   form.uploadDir = dir;
   form.keepExtensions = true;
+
   form
     .on('field', (field,value) => {
       console.log('field');
@@ -52,4 +64,5 @@ function uploadFiles(req, res, dir) {
     form.parse(req);
 
 }
+
 export default admUploadRouter;
