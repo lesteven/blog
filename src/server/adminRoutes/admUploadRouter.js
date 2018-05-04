@@ -3,6 +3,7 @@ import { Router } from 'express';
 import { IncomingForm } from 'formidable';
 import path from 'path';
 import fs from 'fs';
+import Image from '../models/image';
 
 
 const admUploadRouter = Router();
@@ -27,6 +28,10 @@ admUploadRouter.route('/')
   })
 })
 
+
+// ******** helper functions *************
+
+// make directory 
 function makeDir(req, res, dir) {
   fs.mkdir(dir, err => {
     if (err) {
@@ -37,6 +42,8 @@ function makeDir(req, res, dir) {
   })
 }
 
+
+// save files in file system
 function uploadFiles(req, res, dir) {
 
   let form = new IncomingForm(),
@@ -48,20 +55,34 @@ function uploadFiles(req, res, dir) {
 
   form
     .on('field', (field,value) => {
-      console.log('field');
-      // console.log(field, value);
       fields.push([field,value]); 
     })
     .on('file', (field, file) => {
-      console.log('file');
-      // console.log(field, file);
+      const imgPath = split(file.path);
+      console.log(imgPath);
+      saveImage({path:imgPath});
       files.push([field,file]);
     })
     .on('end', () => {
-      console.log('upload done');      
       res.json({success: 'images uploaded!'});
     })
     form.parse(req);
+}
+
+// save image path to db
+function saveImage(data) {
+  let content = new Image(data);
+  content.save(err => {
+    if (err) {
+      return console.log(err)
+    }
+    console.log('success');
+  })
+}
+// split path
+function split(string) {
+  let arr = string.split('/');
+  return arr[1];
 }
 
 
