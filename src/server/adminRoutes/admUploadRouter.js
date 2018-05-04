@@ -11,7 +11,8 @@ const admUploadRouter = Router();
 admUploadRouter.route('/')
 
 .get((req,res) => {
-  res.send('upload router!');
+
+  res.json({files:'upload router!'});
 })
 
 .post( function(req,res) {

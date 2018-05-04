@@ -1,8 +1,10 @@
 import { postFile } from './fetchThunk.js';
+import { fetchData } from './asyncFetch';
 
 // actions
 const drop = '/redux/uploadModule/DROP';
 const uploadFiles = '/redux/uploadModule/UPLOAD';
+const getFiles = '/redux/uploadModule/GET';
 
 
 // action creators
@@ -19,6 +21,19 @@ export const uploadCB = status => {
     type:uploadFiles,
     status, 
   }
+}
+// async fetch
+export function asyncFetchImage(url) {
+    return async function(dispatch) {
+      let res = await fetchData(url).catch(err => console.log('error'));
+      let data = await res.json();
+
+      dispatch({
+        type: getFiles,
+        data
+      });      
+
+    }
 }
 
 // thunk function
@@ -50,9 +65,13 @@ export const upload = (state = initialState, action) => {
         ...state,
         status: action.status,
       }
+    case getFiles:
+      return {
+        ...state,
+        files: action.data,
+      } 
     default:
       return state;
   }
 }
-
 
