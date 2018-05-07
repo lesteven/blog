@@ -38,5 +38,6 @@
   cursor:pointer;
 }
 .mapped-images {
-  max-width:300px;
+  max-width:250px;
+  padding:10px;
 }

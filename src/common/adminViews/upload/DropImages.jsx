@@ -44,6 +44,7 @@ class DropImages extends Component {
         </div>
         </section>
 
+        <hr />
       </Fragment>
     )
   }

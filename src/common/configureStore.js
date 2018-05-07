@@ -6,6 +6,7 @@ import { delayReducer as delay } from './reduxModules/delayModule';
 import { postBlog } from './reduxModules/postBlogModule';
 import { editor } from './reduxModules/editorModule';
 import { upload } from './reduxModules/uploadModule';
+import { scroll } from './reduxModules/scrollModule';
 
 
 export const reducers = combineReducers({
@@ -15,7 +16,7 @@ export const reducers = combineReducers({
   postBlog,
   editor,
   upload,
-
+  scroll,
 });
 
 
