@@ -1,18 +1,23 @@
-import { Router } from 'express';
+import express, { Router } from 'express';
 // import multer from 'multer';
 import { IncomingForm } from 'formidable';
 import path from 'path';
 import fs from 'fs';
 import Image from '../models/image';
+import { getAll, getOld, getNew } from '../utils/getFunctions';
 
 
 const admUploadRouter = Router();
+
+admUploadRouter.use(express.static('uploads'));
+
 
 admUploadRouter.route('/')
 
 .get((req,res) => {
 
-  res.json({files:'upload router!'});
+//  res.json({files:'upload router!'});
+  getAll(req, res, Image, 2, true);
 })
 
 .post( function(req,res) {

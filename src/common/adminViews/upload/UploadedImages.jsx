@@ -3,11 +3,15 @@ import { connect } from 'react-redux';
 
 class UploadedImages extends Component {
   render() {
-  // console.log(this.props.upload);
+  const { files } = this.props.upload;
+  console.log(files);
     return (
-      <div>
-        hello uploadedimages!
-      </div>
+      <section className='uploaded-wrapper'>
+        { files.data? files.data.map(img => 
+          <img src= {`/admapi/upload/${img.path}`} key= {img._id} 
+            className ='mapped-images'/>)
+          : null }
+      </section>
     )
   }
 }

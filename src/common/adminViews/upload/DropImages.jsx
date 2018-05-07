@@ -20,6 +20,14 @@ class DropImages extends Component {
   const { dropAct, upload } = this.props;
     return (
       <Fragment>
+        <div className='uploaded-images'>
+          <h2> Selected Images </h2>
+          { upload.accepted.map(f => 
+            <img key = {f.name} src= {f.preview} />) }
+        </div>
+        <hr />
+
+        <section className='drop-wrapper'>
         <div className='drop-images'>
           <DropZone className='dropzone'
             accept='image/*'
@@ -34,11 +42,8 @@ class DropImages extends Component {
         <div className='upload-button'>
           <button onClick = {this.makeFormData}> Upload! </button>
         </div>
-        <div className='uploaded-images'>
-          <h2> Selected Images </h2>
-          { upload.accepted.map(f => 
-            <img key = {f.name} src= {f.preview} />) }
-        </div>
+        </section>
+
       </Fragment>
     )
   }

@@ -1,3 +1,6 @@
+.drop-wrapper {
+  padding:5vh;
+}
 .drop-images {
   padding:5vh;
   text-align:center;
@@ -12,6 +15,9 @@
   display:flex;
   justify-content:center;
   align-items:center;
+}
+.uploaded-wrapper {
+  padding:5vh;
 }
 .uploaded-images {
   text-align:center;
@@ -30,4 +36,7 @@
   color:white;
   border:none;
   cursor:pointer;
+}
+.mapped-images {
+  max-width:300px;
 }

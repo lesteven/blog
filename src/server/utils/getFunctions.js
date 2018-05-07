@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 
-exports.getAll =(req, res, model, num) =>{
+exports.getAll =(req, res, model, num, bool) =>{
 	model.find({})
         .sort('-createdAt')
         .limit(num)
@@ -12,7 +12,12 @@ exports.getAll =(req, res, model, num) =>{
             res.json({err:'error'});
           }
       //        console.log(content); 
+          if (bool) {
+            res.json({data:content});
+          }
+          else {
             checkPage(req,res,model,content);
+          }
         })
 }
 

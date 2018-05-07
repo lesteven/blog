@@ -14,6 +14,7 @@ class Upload extends Component {
     return (
       <Fragment>
         <DropImages />  
+        <hr />
         <UploadedImages />
       </Fragment>
     )

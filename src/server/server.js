@@ -87,7 +87,6 @@ app.get('*.svg', (req, res, next) => {
 app.use(express.static('dist'));
 app.use(express.static('imgs'));
 
-
 // client api
 app.use('/api', publicRouter);
 
