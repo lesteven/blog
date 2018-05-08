@@ -4,23 +4,31 @@ const scrollAct = '/redux/scrollModule/SCROLL';
 
 // action creators
 
-export const scrollAC = (height) => {
+export const scrollAC = (diff, client) => {
   return {
     type: scrollAct,
-    height
+    diff,
+    client
   }
 }
 
 // initial state
-let initialState = {};
+let initialState = {
+  diff:'',
+  client:'',
+};
 
 // reducers
 
 export const scroll = (state= initialState, action) => {
-
-  switch (action) {
+  switch (action.type) {
     case scrollAct:
-      return '';
+      return {
+        ...state,
+        diff: action.diff,
+        client: action.client,
+        bottom: action.diff === action.client,
+      };
     default:
       return state;
   }

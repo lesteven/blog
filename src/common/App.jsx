@@ -15,11 +15,9 @@ class App extends Component {
       const { getScreenSize } = this.props;
       getScreenSize(window.innerWidth);
   }
-
   componentDidMount() {
       // triggers window event when window is resized
       window.addEventListener('resize', this.getScreenSize); 
-      
       const { fetchData, loginAction } = this.props;
       const { screenSize} = this.props.view;
       screenSize == null? this.getScreenSize(): null; 
