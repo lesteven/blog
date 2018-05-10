@@ -10,10 +10,16 @@ import { loginAction } from './reduxModules/authModule';
 
 
 class App extends Component {
+  getScreenSize = () => {
+      // update screenSize on reducer
+      const { getScreenSize } = this.props;
+      getScreenSize(window.innerWidth);
+  }
   componentDidMount() {
-    // check if user is logged in
-    const { fetchData, loginAction } = this.props;
-    fetchData('/api/auth/log', loginAction);
+      // triggers window event when window is resized
+      window.addEventListener('resize', this.getScreenSize); 
+      const { fetchData, loginAction } = this.props;
+      fetchData('/api/auth/log', loginAction);
   }
 
   render() {
@@ -36,7 +42,6 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        view:state.view
     }
 }
 const mapDispatchToProps = (dispatch) => {

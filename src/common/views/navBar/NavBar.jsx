@@ -16,10 +16,8 @@ class NavBar extends Component {
       getScreenSize(window.innerWidth);
   }
   componentDidMount() {
-      // triggers window event when window is resized
-      window.addEventListener('resize', this.getScreenSize); 
-      const { screenSize} = this.props.view;
-      screenSize == null? this.getScreenSize(): null; 
+    const { screenSize} = this.props.view;
+    screenSize == null? this.getScreenSize(): null; 
   }
 
   render() {

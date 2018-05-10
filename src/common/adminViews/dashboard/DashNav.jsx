@@ -16,15 +16,13 @@ import {toggleDashSideNav,
 
 class DashNav extends Component {
   getScreenSize = () => {
-      // update screenSize on reducer
-      const { getScreenSize } = this.props;
-      getScreenSize(window.innerWidth);
+    // update screenSize on reducer
+    const { getScreenSize } = this.props;
+    getScreenSize(window.innerWidth);
   }
   componentDidMount() {
-      // triggers window event when window is resized
-      window.addEventListener('resize', this.getScreenSize); 
-      const { screenSize} = this.props.view;
-      screenSize == null? this.getScreenSize(): null; 
+    const { screenSize} = this.props.view;
+    screenSize == null? this.getScreenSize(): null; 
   }
   logout = () => {
     this.props.fetchData('/api/auth/logout',this.props.loginAction)
@@ -49,18 +47,18 @@ class DashNav extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {
-    auth: state.auth,
-    view: state.view
-  }
+    return {
+        auth: state.auth,
+        view: state.view,
+    }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchData: (url, cb) => dispatch(fetchData(url, cb)),
-    loginAction: (lstatus) => dispatch(loginAction(lstatus)),
-    toggle: () => dispatch(toggleDashSideNav()),
-    getScreenSize:(size) => dispatch(updateScreenSize(size)),
-  }
+    return {
+      fetchData: (url, cb) => dispatch(fetchData(url, cb)),
+      loginAction: (lstatus) => dispatch(loginAction(lstatus)),
+      toggle: () => dispatch(toggleDashSideNav()),
+      getScreenSize:(size) => dispatch(updateScreenSize(size)),
+    }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(DashNav);
