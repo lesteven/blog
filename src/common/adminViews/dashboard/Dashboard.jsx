@@ -44,7 +44,7 @@ class Dashboard extends Component {
       <div className = 'dashboard'>
         <DashSideNav path = { path }/>
 
-        <div className = 'dash-view' onScroll= { this.onScroll}>
+        <div className = 'dash-view' >
           <DashNav />
           <div className = 'dash-wrapper'>
             <Switch>

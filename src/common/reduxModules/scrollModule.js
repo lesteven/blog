@@ -16,6 +16,7 @@ export const scrollAC = (diff, client) => {
 let initialState = {
   diff:'',
   client:'',
+  endOfPage:'',
 };
 
 // reducers
@@ -27,7 +28,7 @@ export const scroll = (state= initialState, action) => {
         ...state,
         diff: action.diff,
         client: action.client,
-        bottom: action.diff === action.client,
+        endOfPage: action.diff === action.client,
       };
     default:
       return state;

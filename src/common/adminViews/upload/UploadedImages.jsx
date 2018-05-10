@@ -2,9 +2,10 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 
 class UploadedImages extends Component {
+
   render() {
-  const { files } = this.props.upload;
-  console.log(files);
+  const { scroll, upload } = this.props;
+  const { files } = upload;
     return (
       <section className='uploaded-wrapper'>
         { files.data? files.data.map(img => 
@@ -18,7 +19,8 @@ class UploadedImages extends Component {
 
 
 const mapStateToProps = state => ({
-  upload: state.upload
+  upload: state.upload,
+  scroll: state.scroll,
 })
 
 
