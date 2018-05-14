@@ -21,17 +21,18 @@ class App extends Component {
       const { fetchData, loginAction } = this.props;
       fetchData('/api/auth/log', loginAction);
   }
-
-  render() {
-      // mapped out client routes for reactRouter
-      const reactRoutes = routesOptions.routes.map (e =>
+  reactRoutes = () => {
+      return routesOptions.routes.map (e =>
           <Route exact = { e.exact } path = { e.path } 
               component = { e.component } key = { e.path} />
       )
+  }
+  render() {
+      // mapped out client routes for reactRouter
       return (
           <Fragment>
             <Switch>
-                { reactRoutes }
+                { this.reactRoutes() }
             </Switch>
           </Fragment>
       )

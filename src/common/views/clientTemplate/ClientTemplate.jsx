@@ -5,22 +5,23 @@ import NavBar from '../navBar/NavBar.jsx';
 import nav from '../navRoutes.js';
 
 class ClientTemplate extends Component {
-
+  reactRoutes = () => {
+    return nav.routes.map (e =>
+      <Route exact = { e.exact } path = { e.path } 
+          component = { e.component } key = { e.path} />
+  )
+  } 
   render() {
-    const reactRoutes = nav.routes.map (e =>
-        <Route exact = { e.exact } path = { e.path } 
-            component = { e.component } key = { e.path} />
+    return (
+      <Fragment>
+        <NavBar />
+        <div className='max-width view'>
+          <Switch>
+              { this.reactRoutes() }
+          </Switch>
+        </div>
+      </Fragment>
     )
-      return (
-        <Fragment>
-          <NavBar />
-          <div className='max-width view'>
-            <Switch>
-                { reactRoutes }
-            </Switch>
-          </div>
-        </Fragment>
-      )
   }
 }
 
