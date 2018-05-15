@@ -1,0 +1,15 @@
+.white-button {
+    border:1px solid black;
+    color:black;
+    padding:1.5%;
+    background-color:white;
+    cursor:pointer;
+    flex:1;
+}
+.textInput {
+  display:flex;
+  padding:1vh;
+}
+.input-text {
+  flex:4;
+}

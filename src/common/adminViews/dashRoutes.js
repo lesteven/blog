@@ -1,5 +1,5 @@
 import DashHome from './dashhome/DashHome';
-import Blog from './blog/Blog';
+import Blog from './blog2/Blog';
 import Upload from './upload/Upload';
 
 

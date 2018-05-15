@@ -54,10 +54,10 @@ class EditBlogs extends Component{
         postData('/admapi/editor','PUT',obj,postStatus); 
     }
 	blogID=()=>{
-        const {data} = this.props.editor.db;
-        if(data[0]){
+        const {converted} = this.props.editor;
+        if(converted[0]){
             let obj ={};
-            let blog = data;
+            let blog = converted;
             obj.new = blog[0]._id;
             obj.old = blog[blog.length-1]._id;
             return obj;
@@ -68,12 +68,12 @@ class EditBlogs extends Component{
 	}
     render(){
     const {path} = this.props.match;
-    const {db,converted} = this.props.editor;
+    const {pagination,converted} = this.props.editor;
         return(
             <div className='dash-container'>
                 <h1> Edit Blogs</h1>
 				{converted? this.list():null}
-                {converted? <Paginate page = {db.page} path = {path} 
+                {converted? <Paginate page = {pagination} path = {path} 
                     modelID={this.blogID}/> 
                     :<p>there's nothing here!</p>}
             </div>
@@ -82,8 +82,8 @@ class EditBlogs extends Component{
 
 }
 
-const mapStateToProps = ({editor, text}) => ({
-  editor,
+const mapStateToProps = ({richEditor, text}) => ({
+  editor:richEditor,
   text,
 });
 
@@ -98,4 +98,5 @@ const mapDispatchToProps = {
 }
 export default connect(mapStateToProps,mapDispatchToProps)(EditBlogs);
  
+
 

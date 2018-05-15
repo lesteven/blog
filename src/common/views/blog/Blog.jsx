@@ -62,10 +62,10 @@ class Blog extends Component{
         )
     }
 	blogID=()=>{
-        const {data} = this.props.editor.db;
-        if(data[0]){
+        const { converted } = this.props.editor;
+        if(converted[0]){
             let obj ={};
-            let blog = data;
+            let blog = converted;
             obj.new = blog[0]._id;
             obj.old = blog[blog.length-1]._id;
             return obj;
@@ -76,11 +76,11 @@ class Blog extends Component{
 	}
     render(){
     const {path} = this.props.match;
-    const {converted, db} = this.props.editor;
+    const {converted, pagination} = this.props.editor;
         return(
             <div className='mainBlogs'>
                 {converted?this.list():null}         
-                {converted? <Paginate page = {db.page} path = {path} 
+                {converted? <Paginate page = {pagination} path = {path} 
                     modelID={this.blogID}/> 
                     :null}
             </div>
@@ -89,9 +89,9 @@ class Blog extends Component{
 
 }
 
-const mapStateToProps = (state) =>{
+const mapStateToProps = ({richEditor}) =>{
 	return{
-		editor:state.editor,
+		editor: richEditor,
 	};
 };
 

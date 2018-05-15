@@ -7,16 +7,17 @@ import { postBlog } from './reduxModules/postBlogModule';
 import { editor } from './reduxModules/editorModule';
 import { upload } from './reduxModules/uploadModule';
 import { scroll } from './reduxModules/scrollModule';
-
+import { richEditor } from './reduxModules/richEditorModule';
 
 export const reducers = combineReducers({
   view,
   auth,
   delay,
   postBlog,
-  editor,
+  //editor,
   upload,
   scroll,
+  richEditor,
 });
 
 

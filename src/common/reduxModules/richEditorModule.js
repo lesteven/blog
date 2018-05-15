@@ -4,7 +4,9 @@ import {Editor,
         convertToRaw,
         convertFromRaw} from 'draft-js';
 
-//action
+
+
+// action creators
 export function editorAct(editor){
 	return{
 		type:'EDITOR',
@@ -51,15 +53,16 @@ export function handleKeyCommand(id){
 /*******************************************/
 
 // reducer
-export const editor =(state={},action)=>{
-    const {editor,status} = action;
+export const richEditor =(state={},action)=>{
+  const {editor,status} = action;
 	switch(action.type){
 		case 'EDITOR':
-			return {
-                ...state,
-                db: editor,
-                converted: editor.data?convert(editor.data):null
-                }
+      return {
+            ...state,
+            pagination: editor.page,
+            converted: editor.data?convert(editor.data):null,
+            ids: editor.data? getIDs(editor.data): null,      
+            }
     case 'STATUS':
         return{
             ...state,
@@ -96,6 +99,7 @@ export const editor =(state={},action)=>{
 			return state;
 	}
 }
+
 // state modifiers
 const convert =(data)=>{
     const editorData = [...data];
@@ -107,6 +111,10 @@ const convert =(data)=>{
             youTube:'',
         })
     )
+} 
+
+const getIDs = data => {
+  const editorData = [...data];
+  return editorData.map(blog => blog._id);
+
 }
-
-
