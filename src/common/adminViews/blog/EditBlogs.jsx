@@ -82,24 +82,32 @@ class EditBlogs extends Component{
 
 }
 
-const mapStateToProps = (state) =>{
-	return{
-		editor:state.editor,
-        text:state.text,
-	};
-};
-
+const mapStateToProps = ({editor, text}) => ({
+  editor,
+  text,
+});
+/*
 const mapDispatchToProps = (dispatch) =>{
 	return{
 		fetchData:(url,actFunc)=>dispatch(fetchData(url,actFunc)),
 		postData:(url,method,data,actFunc)=>
             dispatch(postData(url,method,data,actFunc)),
 		editorAct:(editor)=>dispatch(editorAct(editor)),
-        updateEditor:(id,state)=>dispatch(updateEditor(id,state)),	
-        postStatus:(status)=>dispatch(postStatus(status)),
-        updateInput:(id,input)=>dispatch(updateInput(id,input)),
-        updateYT:(id,input)=>dispatch(updateYT(id,input))
+    updateEditor:(id,state)=>dispatch(updateEditor(id,state)),	
+    postStatus:(status)=>dispatch(postStatus(status)),
+    updateInput:(id,input)=>dispatch(updateInput(id,input)),
+    updateYT:(id,input)=>dispatch(updateYT(id,input))
 	}
+}
+*/
+const mapDispatchToProps = {
+  fetchData,
+  postData,
+  editorAct,
+  updateEditor,	
+  postStatus,
+  updateInput,
+  updateYT,
 }
 export default connect(mapStateToProps,mapDispatchToProps)(EditBlogs);
  

@@ -1,7 +1,7 @@
 var webpack = require('webpack');
 var merge = require('webpack-merge');
 var common = require('./webpack.common.js');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = merge(common, {
     mode: 'development',
@@ -24,14 +24,11 @@ module.exports = merge(common, {
         rules: [
             {
                 test: /\.css$/, 
-                use: ExtractTextPlugin.extract({
-                    fallback:'style-loader',
-                    use: [
-                        { 
-                            loader: 'css-loader',
-                        }
+                use: [
+                      MiniCssExtractPlugin.loader,
+                      'css-loader',
                     ]
-                })
+                
             }
         ]
     },
