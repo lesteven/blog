@@ -3,7 +3,7 @@ import {Editor,
         RichUtils,
         convertToRaw,
         convertFromRaw} from 'draft-js';
-
+import { asyncFetchData } from './asyncFetch';
 
 
 // action creators
@@ -100,6 +100,16 @@ export const richEditor =(state={},action)=>{
 	}
 }
 
+
+// fetch Data
+export function asyncBlogFetch(url) {
+  return (dispatch) => {
+    asyncFetchData(dispatch, url, editorAct);
+
+  };
+}
+
+
 // state modifiers
 const convert =(data)=>{
     const editorData = [...data];
@@ -112,7 +122,7 @@ const convert =(data)=>{
         })
     )
 } 
-
+// normalize data, get ids of blogs
 const getIDs = data => {
   const editorData = [...data];
   return editorData.map(blog => blog._id);

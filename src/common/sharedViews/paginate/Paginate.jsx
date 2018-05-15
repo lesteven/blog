@@ -2,7 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import style from './paginate.css';
 
-
+/*
+* Paginate 
+* - needs paginate object boolean (whether new page
+*   and old page exist)
+* - path (current path of component)
+* - modelId (ids of the new element and old element)
+*/
 function Paginate({ page, modelID, path}){
     let paginate = modelID();
     return(
