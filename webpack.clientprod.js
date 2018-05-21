@@ -3,7 +3,9 @@ var webpack = require('webpack');
 var common = require('./webpack.common.js');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CompressionPlugin = require("compression-webpack-plugin");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
 
 module.exports = merge(common, {
@@ -23,21 +25,16 @@ module.exports = merge(common, {
 
   //      new ExtractTextPlugin('styles.css')
     ],
-    module: {
-        rules: [
-            {
-                test: /\.css$/, 
-                use: ExtractTextPlugin.extract({
-                    fallback:'style-loader',
-                    use: [
-                        { 
-                            loader: 'css-loader',
-                            options: {minimize:true}
-                        }
-                    ]
-                })
-            }
-        ]
-    },
-
+    optimization: {
+      minimizer: [
+  /*
+        new UglifyJsPlugin({
+          cache: true,
+          parallel: true,
+          sourceMap: true 
+        })
+  */
+      new OptimizeCSSAssetsPlugin({})
+      ],
+    }
 });

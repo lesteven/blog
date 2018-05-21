@@ -19,7 +19,7 @@ module.exports = merge(common, {
             }
         }
     },
-
+/*
     module: {
         rules: [
             {
@@ -32,4 +32,5 @@ module.exports = merge(common, {
             }
         ]
     },
+*/
 });
