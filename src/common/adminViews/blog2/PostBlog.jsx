@@ -1,4 +1,4 @@
-import React,{Component} from 'react';
+import React,{ Component, Fragment } from 'react';
 import {AtomicBlockUtils, 
         Editor, 
         EditorState, 
@@ -104,7 +104,7 @@ class PostBlog extends Component {
     const {editor, youtube, imgURL, status, converted} = this.props.postBlog;
     const blog = {_id:0};
         return (
-            <div className='dash-container'>
+            <Fragment>
             {status? <h3 className='success'>Blog Posted!</h3>:null}
                { converted? 
                 <div className='RichEditor-root'>
@@ -136,7 +136,7 @@ class PostBlog extends Component {
                     </div>
                 </div>
                     :null }
-            </div>
+            </Fragment>
         )
     }
 }

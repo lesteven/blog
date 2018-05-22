@@ -22,8 +22,6 @@ module.exports = merge(common, {
               test: /\.js$|\.css$|\.html$|\.svg$/,
               minRatio: 0.8
             }),
-
-  //      new ExtractTextPlugin('styles.css')
     ],
     optimization: {
       minimizer: [

@@ -1,4 +1,4 @@
-import React,{Component} from 'react';
+import React,{ Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import Paginate from '../../sharedViews/paginate/Paginate.jsx';
 import { postStatus,
@@ -8,9 +8,10 @@ import EditBlog from './components/EditBlog.jsx';
 import {Editor, EditorState, RichUtils,convertToRaw} from 'draft-js';
 import { updateInput,
          updateYT} from '../../reduxModules/richEditorModule';
+import EditBlogList from './containers/EditBlogList';
 
 
-class EditBlogs extends Component{
+class EditContainer extends Component{
   componentDidMount(){
     const { asyncBlogFetch } = this.props;
     asyncBlogFetch(`/api/editor/data/${location.search}`)
@@ -26,9 +27,10 @@ class EditBlogs extends Component{
   const {path} = this.props.match;
   const {pagination,converted} = this.props.editor;
     return(
-      <div className='dash-container'>
-          <h1> Edit Blogs</h1>
-      </div>
+      <Fragment>
+        <h1> Edit Blogs</h1>
+        { converted? <EditBlogList />: null }
+      </Fragment>
     )
   }
 
@@ -46,7 +48,7 @@ const mapDispatchToProps = {
   updateInput,
   updateYT,
 }
-export default connect(mapStateToProps,mapDispatchToProps)(EditBlogs);
+export default connect(mapStateToProps,mapDispatchToProps)(EditContainer);
  
 
 

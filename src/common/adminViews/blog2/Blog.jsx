@@ -1,11 +1,11 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PostBlog from './PostBlog';
-import EditBlogs from './EditBlogs';
+import EditContainer from './EditContainer';
 
 /*
 * Pass down this.props (history) to edit blogs
-* so EditBlogs can access url when fetching data
+* so EditContainer can access url when fetching data
 */
 class Blog extends Component {
 
@@ -13,7 +13,7 @@ class Blog extends Component {
     return (
       <Fragment>
         <PostBlog />
-        <EditBlogs { ...this.props }/>
+        <EditContainer { ...this.props }/>
       </Fragment>
     )
   }
