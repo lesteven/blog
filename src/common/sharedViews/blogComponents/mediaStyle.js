@@ -39,8 +39,9 @@ const Video = (props) => {
 const YouTube = (props) => {
     return(
         <iframe width="100%" height="315"
+            allow='autoplay'
             src={props.src} 
-            frameBorder="0" gesture="media" allow="encrypted-media" 
+            frameBorder="0"  allow="encrypted-media" 
             allowFullScreen>
         </iframe>
     )

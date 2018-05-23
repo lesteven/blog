@@ -9,6 +9,7 @@ import {Editor, EditorState, RichUtils,convertToRaw} from 'draft-js';
 import { updateInput,
          updateYT} from '../../reduxModules/richEditorModule';
 import EditBlogList from './containers/EditBlogList';
+import EditPaginate from './containers/EditPaginate';
 
 
 class EditContainer extends Component{
@@ -30,6 +31,7 @@ class EditContainer extends Component{
       <Fragment>
         <h1> Edit Blogs</h1>
         <EditBlogList />
+        <EditPaginate />
       </Fragment>
     )
   }
