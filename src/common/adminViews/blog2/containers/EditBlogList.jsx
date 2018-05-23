@@ -8,11 +8,13 @@ class EditBlogList extends Component {
 
   render() {
 //  const { ids } = this.props.richEditor;
-  console.log(this.props);
   const ids = this.props.editData;
+  
     return (
       <Fragment>
-        { ids.map(id => <EditBlogWrapper key={ id } id = { id }/> )}
+        { ids? 
+          ids.map(id => <EditBlogWrapper key={ id } id = { id }/> )
+          :null}
       </Fragment>
     )
   }

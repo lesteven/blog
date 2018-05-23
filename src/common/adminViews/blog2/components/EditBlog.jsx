@@ -97,7 +97,8 @@ class EditBlog extends Component{
     render(){
     let className = 'RichEditor-editor Border';
     const {blog,remove,update,put,updateInput,inputValue,
-            updateYT,vidValue,success} = this.props;
+            updateYT} = this.props;
+    console.log(this.props);
     //console.log(put);
         return(
             <div className='RichEditor-root'>
@@ -108,20 +109,20 @@ class EditBlog extends Component{
                     onToggle={this.toggleInlineStyle}/>
                 <TextInput 
                     updateInput ={updateInput}
-                    inputValue ={inputValue}
+                    inputValue ={blog.imgURL}
                     data ={blog}
                     onSubmit={this.addImage}
                     buttonText='Add Image'
                     />
                 <TextInput
                     updateInput ={updateYT}
-                    inputValue ={vidValue}
+                    inputValue ={blog.youTube}
                     data ={blog}
                     onSubmit={this.addYouTube}
                     buttonText='Add Video'
                     />
                 <div className={className} onClick={this.focus}>
-                    {success?<p className='success'>Edit saved!</p>: null}
+                    {blog.status?<p className='success'>Edit saved!</p>: null}
                     <Editor
                         blockStyleFn={getBlockStyle}
                         blockRendererFn={mediaBlockRenderer}

@@ -25,21 +25,17 @@ class EditContainer extends Component{
   }
   render(){
   const {path} = this.props.match;
-  const {pagination,converted} = this.props.editor;
+  //const {pagination,converted} = this.props.editor;
     return(
       <Fragment>
         <h1> Edit Blogs</h1>
-        { converted? <EditBlogList />: null }
+        <EditBlogList />
       </Fragment>
     )
   }
 
 }
 
-const mapStateToProps = ({richEditor, text}) => ({
-  editor:richEditor,
-  text,
-});
 
 const mapDispatchToProps = {
   asyncBlogFetch,
@@ -48,7 +44,9 @@ const mapDispatchToProps = {
   updateInput,
   updateYT,
 }
-export default connect(mapStateToProps,mapDispatchToProps)(EditContainer);
+
+
+export default connect(null,mapDispatchToProps)(EditContainer);
  
 
 

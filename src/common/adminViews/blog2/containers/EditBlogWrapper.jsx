@@ -5,6 +5,9 @@ import EditBlog from '../components/EditBlog';
 import { editorAct,
         postStatus,
         updateEditor } from '../../../reduxModules/richEditorModule';
+import {Editor, EditorState, RichUtils,convertToRaw} from 'draft-js';
+import {updateInput,updateYT} from '../../../reduxModules/editorModule';
+import { fetchData, postData } from '../../../reduxModules/fetchThunk';
 
 /*
 * EditBlogWrapper retrieves own data from reselect
@@ -14,15 +17,32 @@ import { editorAct,
 
 
 class EditBlogWrapper extends Component {
+  delete=(data)=>{
+      const id = data._id;
+      const {postData,editorAct} = this.props;
+      postData('/admapi/editor','DELETE',{_id:id},editorAct);
+  }
+  put=(data)=>{
+//        console.log(data)
+      const {postData,editorAct,postStatus} = this.props;
+      var contentState = data.editor.getCurrentContent();
+      let obj = {
+          _id:data._id,
+          editor:JSON.stringify(convertToRaw(contentState))
+      }
+      postData('/admapi/editor','PUT',obj,postStatus); 
+  }
   
   render() {
-  console.log(this.props);
-//  console.log(this.props.data);
-  const { data, updateEditor } = this.props;
+  const { data, updateEditor, updateInput, updateYT } = this.props;
     return (
       <EditBlog
         blog = { data } 
+        remove = { this.delete }
         update = { updateEditor }
+        put = { this.put }
+        updateInput = { updateInput }
+        updateYT = { updateYT }
         />
     )
   }
@@ -40,7 +60,13 @@ const mapState  = ({ richEditor }, ownProps) => ({
 })
 
 const mapDispatchToProps = {
-  updateEditor,
+  fetchData,
+  postData,
+  editorAct,
+  updateEditor,	
+  postStatus,
+  updateInput,
+  updateYT,
 }
 //export default EditBlogWrapper;
 export default connect(mapState, mapDispatchToProps)(EditBlogWrapper);
