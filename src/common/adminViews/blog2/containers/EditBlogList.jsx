@@ -1,17 +1,18 @@
 import React, { Component, Fragment } from 'react';
 import { createSelector } from 'reselect';
 import { connect } from 'react-redux';
-import EditBlog from './EditBlog';
+import EditBlogWrapper from './EditBlogWrapper';
 
 
 class EditBlogList extends Component {
 
   render() {
-  const { ids } = this.props.richEditor;
-  console.log(ids);
+//  const { ids } = this.props.richEditor;
+  console.log(this.props);
+  const ids = this.props.editData;
     return (
       <Fragment>
-        { ids.map(id => <EditBlog key={ id } id = { id }/> )}
+        { ids.map(id => <EditBlogWrapper key={ id } id = { id }/> )}
       </Fragment>
     )
   }
@@ -19,15 +20,12 @@ class EditBlogList extends Component {
 
 const getBlog = createSelector(
   (richEditor) => richEditor.ids, 
-  (richEditor) => richEditor.converted,
-  (id, data) => data.map(id => {
-    return { id }
-  })
+  (id) =>  (id)
 );
 
 const mapState = ({ richEditor }) => ({
-//  editData: getBlog(richEditor)
-  richEditor
+  editData: getBlog(richEditor)
+//  richEditor
 })
 
 export default connect(mapState)(EditBlogList);

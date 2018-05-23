@@ -1,19 +1,29 @@
 import React, { Component, Fragment } from 'react';
 import { createSelector } from 'reselect';
 import { connect } from 'react-redux';
+import EditBlog from '../components/EditBlog';
+import { editorAct,
+        postStatus,
+        updateEditor } from '../../../reduxModules/richEditorModule';
 
 /*
-* EditBlog retrieves own data from reselect
+* EditBlogWrapper retrieves own data from reselect
 * so once it is edited, it will only render itself
 * and not other components.
 */
-class EditBlog extends Component {
+
+
+class EditBlogWrapper extends Component {
   
   render() {
   console.log(this.props);
 //  console.log(this.props.data);
+  const { data, updateEditor } = this.props;
     return (
-      <div>hello</div>
+      <EditBlog
+        blog = { data } 
+        update = { updateEditor }
+        />
     )
   }
 }
@@ -29,6 +39,9 @@ const mapState  = ({ richEditor }, ownProps) => ({
   data: getData(richEditor.converted, ownProps) 
 })
 
-//export default EditBlog;
-export default connect(mapState)(EditBlog);
+const mapDispatchToProps = {
+  updateEditor,
+}
+//export default EditBlogWrapper;
+export default connect(mapState, mapDispatchToProps)(EditBlogWrapper);
 
