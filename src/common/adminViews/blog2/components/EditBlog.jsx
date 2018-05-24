@@ -98,7 +98,6 @@ class EditBlog extends Component{
     let className = 'RichEditor-editor Border';
     const {blog,remove,update,put,updateInput,inputValue,
             updateYT} = this.props;
-    console.log(this.props);
     //console.log(put);
         return(
             <div className='RichEditor-root'>

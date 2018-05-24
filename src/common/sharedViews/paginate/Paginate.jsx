@@ -11,6 +11,7 @@ import style from './paginate.css';
 */
 function Paginate({ page, modelID, path}){
     let paginate = modelID();
+    // console.log(paginate)
     return(
         <div className='paginate'>
           <span>

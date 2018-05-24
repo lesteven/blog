@@ -1,13 +1,7 @@
 import React,{ Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import Paginate from '../../sharedViews/paginate/Paginate.jsx';
 import { postStatus,
-         updateEditor,
          asyncBlogFetch } from '../../reduxModules/richEditorModule';
-import EditBlog from './components/EditBlog.jsx';
-import {Editor, EditorState, RichUtils,convertToRaw} from 'draft-js';
-import { updateInput,
-         updateYT} from '../../reduxModules/richEditorModule';
 import EditBlogList from './containers/EditBlogList';
 import EditPaginate from './containers/EditPaginate';
 
@@ -18,10 +12,10 @@ class EditContainer extends Component{
     asyncBlogFetch(`/api/editor/data/${location.search}`)
   }
   componentWillReceiveProps(nextProps){
-    const { location } = this.props;
-    if(nextProps.location.search !== location.search && 
-      !nextProps.editor.converted.delete){
-      asyncFetchData(`/api/editor/data/${nextProps.location.search}`)
+    const { location, asyncBlogFetch } = this.props;
+//    console.log(this.props);
+    if(nextProps.location.search !== location.search){
+      asyncBlogFetch(`/api/editor/data/${nextProps.location.search}`)
     }  
   }
   render(){
@@ -41,14 +35,10 @@ class EditContainer extends Component{
 
 const mapDispatchToProps = {
   asyncBlogFetch,
-  updateEditor,	
   postStatus,
-  updateInput,
-  updateYT,
 }
 
 
 export default connect(null,mapDispatchToProps)(EditContainer);
  
-
 

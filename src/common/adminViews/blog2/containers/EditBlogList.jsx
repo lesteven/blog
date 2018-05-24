@@ -5,11 +5,9 @@ import EditBlogWrapper from './EditBlogWrapper';
 
 
 class EditBlogList extends Component {
-
   render() {
-//  const { ids } = this.props.richEditor;
   const ids = this.props.editData;
-  
+  // console.log(ids);  
     return (
       <Fragment>
         { ids? 
@@ -20,7 +18,7 @@ class EditBlogList extends Component {
   }
 }
 
-const getBlog = createSelector(
+export const getBlog = createSelector(
   (richEditor) => richEditor.ids, 
   (id) =>  (id)
 );

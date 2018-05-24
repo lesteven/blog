@@ -9,8 +9,9 @@ export function fetchData(url) {
 // async fetch
 export async function asyncFetchData(dispatch, url, action) {
     let res = await fetchData(url)
-      .catch(err => console.log('error'));
+      .catch(err => console.log('fetch error'));
 
-    let data = await res.json();
+    let data = await res.json()
+      .catch(err => console.log('json error'));
     dispatch(action(data));      
 }
