@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import DropImages from './DropImages';
 import UploadedImages from './UploadedImages';
+import InfiniteImages from './InfiniteImages';
 import styles from './upload.css';
 import { asyncFetchImage } from '../../reduxModules/uploadModule';
 
@@ -15,6 +16,7 @@ class Upload extends Component {
       <Fragment>
         <DropImages />  
         <UploadedImages />
+        <InfiniteImages />
       </Fragment>
     )
   }
