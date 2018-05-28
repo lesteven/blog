@@ -6,7 +6,10 @@ import { Grid } from 'react-virtualized';
 const list = [
   [1,2,3],
   [4,5,6],
-  [7,8,9]
+  [7,8,9],
+  ['a','b','c'],
+  ['d','e','f'],
+  ['g','h','i'],
 ]
 function cellRenderer ({columnIndex, key, rowIndex, style}) {
   return (
@@ -27,10 +30,10 @@ class InfiniteImages extends Component {
           cellRenderer = { cellRenderer }
           columnCount  = { list[0].length }
           columnWidth = { 100 }
-          height = { 500 }
+          height = { 100 }
           rowCount = { list.length }
           rowHeight = { 30 }
-          width = { 500 } 
+          width = { 300 } 
         /> 
       </section>
     )
@@ -40,7 +43,6 @@ class InfiniteImages extends Component {
 
 const mapStateToProps = state => ({
   upload: state.upload,
-  scroll: state.scroll,
 })
 
 
