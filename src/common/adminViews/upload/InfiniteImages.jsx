@@ -1,40 +1,51 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { Grid } from 'react-virtualized';
+import { InfiniteLoader, List } from 'react-virtualized';
+import 'react-virtualized/styles.css';
 
+const list = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]
 
-const list = [
-  [1,2,3],
-  [4,5,6],
-  [7,8,9],
-  ['a','b','c'],
-  ['d','e','f'],
-  ['g','h','i'],
-]
-function cellRenderer ({columnIndex, key, rowIndex, style}) {
+const remoteRowCount = list.length;
+console.log(remoteRowCount);
+function isRowLoaded({ index }) {
+    return !!list[index];
+}
+function loadMoreRows({ startIndex, stopIndex }) {
+  console.log(startIndex);
+  console.log(stopIndex);
+}
+function rowRenderer ({ key, index, style}) {
   return (
     <div key = { key} style = { style }>
-      { list[rowIndex][columnIndex] }
+      { list[index] }
     </div>
   )
 }
 
-class InfiniteImages extends Component {
+class InfiniteImages extends React.PureComponent {
 
   render() {
-  const { scroll, upload } = this.props;
+  const { upload } = this.props;
   const { files } = upload;
     return (
       <section className='uploaded-wrapper'>
-        <Grid 
-          cellRenderer = { cellRenderer }
-          columnCount  = { list[0].length }
-          columnWidth = { 100 }
-          height = { 100 }
-          rowCount = { list.length }
-          rowHeight = { 30 }
-          width = { 300 } 
-        /> 
+        <InfiniteLoader
+          isRowLoaded = { isRowLoaded }
+          loadMoreRows = { loadMoreRows }
+          rowCount = { remoteRowCount }
+        >
+          {({ onRowsRendered, registerChild }) => (
+            <List
+              height = { 200 }
+              onRowsRendered = { onRowsRendered }
+              ref = { registerChild }
+              rowCount = { remoteRowCount }
+              rowHeight = { 20 }
+              rowRenderer = {rowRenderer }
+              width = { 300 }
+            />
+          )}
+        </InfiniteLoader>
       </section>
     )
   }
