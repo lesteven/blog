@@ -2,12 +2,20 @@ import { postFile } from './fetchThunk.js';
 import { fetchData } from './asyncFetch';
 
 // actions
+const fetching = '/redux/uploadModule/FETCHING';
 const drop = '/redux/uploadModule/DROP';
 const uploadFiles = '/redux/uploadModule/UPLOAD';
-const getFiles = '/redux/uploadModule/GET';
+const getFiles = '/redux/uploadModule/FETCHED';
 
 
 // action creators
+export const fetchingData = () => ({
+  type: fetching
+})
+export const fetchedData = (data) => ({
+  type: getFiles,
+  data
+})
 export const dropAct = (data) => {
   return {
     type: drop,
@@ -22,16 +30,20 @@ export const uploadCB = status => {
     status, 
   }
 }
+
+
 // async fetch
 export function asyncFetchImage(url) {
+    console.log('async fetch image called');
     return async function(dispatch) {
-      let res = await fetchData(url).catch(err => console.log('error'));
-      let data = await res.json();
+      dispatch(fetchingData());
 
-      dispatch({
-        type: getFiles,
-        data
-      });      
+      let res = await fetchData(url)
+                .catch(err => console.log('res error'));
+      let data = await res.json()
+                .catch(err => console.log('data error'));
+
+      dispatch(fetchedData(data));      
 
     }
 }
@@ -43,7 +55,8 @@ export const uploadAct = files => {
 
 // initial state
 const initialState = {
-  files:[],
+  fetchingData:false,
+  fetchedFiles:[],
   accepted:[],
   rejected:[],
   status:''
@@ -54,6 +67,11 @@ const initialState = {
 export const upload = (state = initialState, action) => {
   let { data } = action;
   switch (action.type) {
+    case fetching:
+      return {
+        ...state,
+        fetchingData: true
+      }
     case drop:
       return {
         ...state,
@@ -68,7 +86,8 @@ export const upload = (state = initialState, action) => {
     case getFiles:
       return {
         ...state,
-        files: action.data,
+        fetchingData: false,
+        fetchedFiles: action.data,
       } 
     default:
       return state;

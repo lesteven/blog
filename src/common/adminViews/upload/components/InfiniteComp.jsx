@@ -9,6 +9,7 @@ function InfiniteComp ({
   list,
   loadNextPage
 }) {
+  
   const rowCount = list.length;
   const loadMoreRows = isNextPageLoading
     ? () => {}
@@ -24,11 +25,13 @@ function InfiniteComp ({
     }
     else {
       content = list[index];
+      console.log(content);
     }
     
     return (
-      <div key = { key } style = { style } >
-        { content }
+      <div style = { style } key= {content._id}>
+      <img src= {`/admapi/upload/${content.path}`}  
+        className ='mapped-images' />
       </div>
     )
   }
@@ -43,8 +46,9 @@ function InfiniteComp ({
           ref = { registerChild }
           onRowsRendered = { onRowsRendered }
           rowRenderer = { rowRenderer }
-          rowCount = { remoteRowCount }
-          rowHeight = { 20 }
+          rowCount = { rowCount }
+          rowHeight = { 250 }
+          height = { 1000 }
           width = { 300 }
         />
       )}

@@ -5,10 +5,10 @@ class UploadedImages extends Component {
 
   render() {
   const { scroll, upload } = this.props;
-  const { files } = upload;
+  const { fetchedFiles } = upload;
     return (
       <section className='uploaded-wrapper'>
-        { files.data? files.data.map(img => 
+        { fetchedFiles.data? fetchedFiles.data.map(img => 
           <img src= {`/admapi/upload/${img.path}`} key= {img._id} 
             className ='mapped-images'/>)
           : null }

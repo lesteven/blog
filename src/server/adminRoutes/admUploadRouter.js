@@ -17,7 +17,7 @@ admUploadRouter.route('/')
 .get((req,res) => {
 
 //  res.json({files:'upload router!'});
-  getAll(req, res, Image, 2, true);
+  getAll(req, res, Image, 2);
 })
 
 .post( function(req,res) {
