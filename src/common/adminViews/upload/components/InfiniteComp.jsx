@@ -23,16 +23,14 @@ function InfiniteComp ({
     let content;
 
     if (!isRowLoaded({ index })) {
-      console.log('will load');
       content = 'Loading...'
     }
     else {
-      console.log('loaded');
       content = list[index];
     }
     
     return (
-      <div style = { style } key= {content._id}>
+      <div style = { style } key= {content._id + content.path}>
       <img src= {`/admapi/upload/${content.path}`}
         className ='mapped-images' />
       </div>

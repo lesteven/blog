@@ -91,7 +91,6 @@ export const upload = (state = initialState, action) => {
         fetchingData: true
       }
     case infiniteFetch:
-      console.log(data.data);
       return {
         ...state,
         fetchedFiles: {

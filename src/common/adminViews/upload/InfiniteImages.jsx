@@ -13,11 +13,9 @@ class InfiniteImages extends React.PureComponent {
   loadNextPage = ({startIndex, stopIndex}) => {
     const { asyncInfinite, upload } = this.props;
     const { fetchedFiles } = upload;
-    console.log('startIndex', startIndex);
-    console.log('stopIndex',  stopIndex);
     const id = fetchedFiles.data[startIndex-1]._id
     const url = `/admapi/upload/data?old=${id}`;
-    console.log(id);
+
     return new Promise(resolve => {
       asyncInfinite(url);
     });
