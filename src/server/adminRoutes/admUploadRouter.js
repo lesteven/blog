@@ -8,7 +8,7 @@ import { getAll, getOld, getNew } from '../utils/getFunctions';
 
 
 const admUploadRouter = Router();
-
+const num = 2;
 admUploadRouter.use(express.static('uploads'));
 
 
@@ -17,7 +17,7 @@ admUploadRouter.route('/')
 .get((req,res) => {
 
 //  res.json({files:'upload router!'});
-  getAll(req, res, Image, 2);
+  getAll(req, res, Image, num);
 })
 
 .post( function(req,res) {
@@ -34,6 +34,19 @@ admUploadRouter.route('/')
   })
 })
 
+admUploadRouter.route('/data')
+
+.get((req,res) => {
+  console.log(req.params);
+  console.log('reached upload data!');
+  if(req.query.new){
+    getNew(req,res,Image, num);
+  }
+  else if(req.query.old){
+    getOld(req,res,Image, num);
+  }
+
+})
 
 // ******** helper functions *************
 

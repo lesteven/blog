@@ -31,6 +31,7 @@ class Blog extends Component{
 */
     componentDidMount = () => {
         const {fetchData,editorAct} = this.props;
+        console.log(`/api/editor/data/${location.search}`);
         fetchData(`/api/editor/data/${location.search}`,editorAct);
     }
     componentWillReceiveProps(nextProps){

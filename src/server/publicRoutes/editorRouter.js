@@ -5,11 +5,11 @@ var get = require('../utils/getFunctions');
 
 const num = 3;
 
-editorRouter.route('/:id')
+editorRouter.route('/data')
 
 .get(function(req,res){	
     console.log(' ******** editor router visited!');
-    console.log(req.query);
+    console.log('params:', req.params);
     if(req.query.new){
       console.log('new');
       get.getNew(req,res,Editor, num);

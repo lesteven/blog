@@ -10,27 +10,30 @@ function InfiniteComp ({
   loadNextPage
 }) {
   
-  const rowCount = list.length;
+  const rowCount = hasNextPage? list.length + 1: list.length;
   const loadMoreRows = isNextPageLoading
     ? () => {}
     : loadNextPage
-  const isRowLoaded = ({ index }) => (!hasNextPage || 
-    index < list.length)
+  const isRowLoaded = ({ index }) => {
+    //return !hasNextPage || index < list.length
+    return !!list[index];
+  }
 
   const rowRenderer = ({ index, key, style }) => {
     let content;
 
     if (!isRowLoaded({ index })) {
+      console.log('will load');
       content = 'Loading...'
     }
     else {
+      console.log('loaded');
       content = list[index];
-      console.log(content);
     }
     
     return (
       <div style = { style } key= {content._id}>
-      <img src= {`/admapi/upload/${content.path}`}  
+      <img src= {`/admapi/upload/${content.path}`}
         className ='mapped-images' />
       </div>
     )
@@ -48,7 +51,7 @@ function InfiniteComp ({
           rowRenderer = { rowRenderer }
           rowCount = { rowCount }
           rowHeight = { 250 }
-          height = { 1000 }
+          height = { 400 }
           width = { 300 }
         />
       )}
