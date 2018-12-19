@@ -23,7 +23,10 @@ function InfiniteComp ({
     let content;
 
     if (!isRowLoaded({ index })) {
-      content = 'Loading...'
+      content = {
+        _id: index,
+        path: '',
+      }
     }
     else {
       content = list[index];
