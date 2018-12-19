@@ -11,25 +11,16 @@ const navRoutes = {
     {
       prefix,
       path: '/', 
-      component: Home, 
+      component: Blog, 
       exact: true, 
-      title: 'Home', 
+      title: 'Blog', 
     },
-
     {
       prefix,
       path: '/about', 
       component: About, 
       exact: true, 
       title: 'About', 
-    },
-
-    {
-      prefix,
-      path: '/blog', 
-      component: Blog, 
-      exact: true, 
-      title: 'Blog', 
     },
     
   ],

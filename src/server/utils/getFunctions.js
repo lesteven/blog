@@ -80,11 +80,11 @@ async function checkPage(req,res,model,data){
             page:paginate
         } 
     //    console.log(fetchedData);
-        console.log('~~ data will be sent');
+        // console.log('~~ data will be sent');
         res.json(fetchedData);
     }
     catch(e) {
-        console.log(e);
+        // console.log(e);
         res.json({err:'error'});
     }
 }

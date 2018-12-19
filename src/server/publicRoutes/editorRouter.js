@@ -8,18 +8,18 @@ const num = 3;
 editorRouter.route('/data')
 
 .get(function(req,res){	
-    console.log(' ******** editor router visited!');
-    console.log('params:', req.params);
+    // console.log(' ******** editor router visited!');
+    // console.log('params:', req.params);
     if(req.query.new){
-      console.log('new');
+      // console.log('new');
       get.getNew(req,res,Editor, num);
     }
     else if(req.query.old){
-      console.log('old');
+      // console.log('old');
       get.getOld(req,res,Editor, num);
     }
     else{
-      console.log('not new or old');
+      // console.log('not new or old');
       get.getAll(req,res,Editor, num)
     }
 })

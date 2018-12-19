@@ -21,7 +21,7 @@ admUploadRouter.route('/')
 })
 
 .post( function(req,res) {
-  console.log('admupload');
+//  console.log('admupload');
   const dir = 'uploads';
 
   fs.readdir(dir, (err, files) => {
@@ -37,8 +37,8 @@ admUploadRouter.route('/')
 admUploadRouter.route('/data')
 
 .get((req,res) => {
-  console.log(req.params);
-  console.log('reached upload data!');
+  // console.log(req.params);
+  // console.log('reached upload data!');
   if(req.query.new){
     getNew(req,res,Image, num);
   }
@@ -56,7 +56,7 @@ function makeDir(req, res, dir) {
     if (err) {
       return console.log(err);
     }
-    console.log('dir created!');
+//    console.log('dir created!');
     uploadFiles(req, res, dir);
   })
 }

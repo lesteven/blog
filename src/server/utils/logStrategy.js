@@ -20,7 +20,7 @@ module.exports = function (passport, res) {
 
         if (!user || !user.validPassword(password)) {
           if (user && user.locked) {
-            console.log('account has been locked');
+            // console.log('account has been locked');
             return res.json({ err: 'an error occured' });
           }
           if (user) {
@@ -29,7 +29,7 @@ module.exports = function (passport, res) {
           return res.json({ err: 'Invalid ID or password' });
         }
         if (user.locked) {
-          console.log('account has been locked');
+          // console.log('account has been locked');
           return res.json({ err: 'an error occured' });
         }
         req.login(user, (err) => {
