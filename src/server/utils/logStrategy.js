@@ -24,7 +24,7 @@ module.exports = function (passport, res) {
             return res.json({ err: 'an error occured' });
           }
           if (user) {
-            preventBrute(user);
+            preventBrute(user, req);
           }
           return res.json({ err: 'Invalid ID or password' });
         }
@@ -54,7 +54,7 @@ module.exports = function (passport, res) {
   ));
 };
 // prevent brute force attack on accounts
-function preventBrute(user) {
+function preventBrute(user, req) {
   if (user.attempts < 10) {
     user.attempts += 1;
   } else {
@@ -63,8 +63,9 @@ function preventBrute(user) {
 
     const url = generateUnlock();
     addLockedToDB(user.username, url);
-    const fullUrl = `http://localhost:8080/api/locked/${url}`;
-//    sendEmail(fullUrl);
+    const host = req.get('host');
+    const fullUrl = `${host}/api/locked/${url}`;
+    sendEmail(fullUrl);
   }
 //  console.log(user);
 //  console.log(user.attempts);
@@ -77,7 +78,7 @@ function preventBrute(user) {
 function sendEmail(url) {
   const email = {
 	  to: config.email,
-	  from: 'VBZ@example.com',
+	  from: 'blog.imstevenle@support.com',
 	  subject: 'Account Locked',
 	  text: `Your account has been locked, go to link to unlock it\n${
       url}`,

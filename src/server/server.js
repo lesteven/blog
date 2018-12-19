@@ -23,7 +23,7 @@ import { handleRender } from './ssr/ssrFunctions';
 const app = express();
 app.use(helmet());
 app.use(morgan('dev'));
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3004;
 
 // for parsing urlencoded && json in req.body
 app.use(bodyParser.urlencoded({
