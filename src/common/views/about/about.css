@@ -1,0 +1,8 @@
+.about {
+  max-width: 600px;
+  margin: auto;
+  padding: 0 5%;
+}
+.about a {
+  text-decoration: none;
+}
